@@ -1,0 +1,227 @@
+{
+  "@context": {
+    "shacl": "http://www.w3.org/ns/shacl#",
+    "fnml": "http://semweb.mmlab.be/ns/fnml#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "boolean": "http://www.w3.org/2001/XMLSchema#boolean",
+    "integer": "http://www.w3.org/2001/XMLSchema#integer",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rr": "http://www.w3.org/ns/r2rml#",
+    "rml": "http://semweb.mmlab.be/ns/rml#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "skl": "https://skl.standard.storage/",
+    "label": "rdfs:label",
+    "schema": "https://schema.org/",
+    "rdfs:subClassOf": { "@type": "@id" },
+    "rdfs:range": { "@id": "rdfs:range", "@type": "@id" },
+    "rdfs:domain": { "@id": "rdfs:domain", "@type": "@id" },
+    "account": { "@id": "skl:account", "@type": "@id" },
+    "description": { "@id": "skl:description" },
+    "apiKey": { "@id": "skl:apiKey" },
+    "accessToken": { "@id": "skl:accessToken" },
+    "openApiDescription": { "@id": "skl:openApiDescription", "@type": "@json" },
+    "shacl:path": { "@type": "@id" },
+    "shacl:nodeKind": { "@type": "@id" },
+    "shacl:class": { "@type": "@id" },
+    "shacl:datatype": { "@type": "@id" },
+    "shacl:maxCount": { "@type": "xsd:integer" },
+    "shacl:minCount": { "@type": "xsd:integer" }
+  },
+  "@graph": [
+    {
+      "@id": "https://skl.standard.storage/OpenApiDescription",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "OpenApiDescription",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/integration"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:minount": 1,
+          "shacl:path": "https://skl.standard.storage/openApiDescription"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/Collection",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Collection",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:nodeKind": "shacl:BlankNodeOrIRI",
+          "shacl:path": "https://skl.standard.storage/records"
+        },
+        {
+          "shacl:nodeKind": "shacl:BlankNodeOrIRI",
+          "shacl:path": "https://skl.standard.storage/linkedRecords"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/Verb",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Verb",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:class": "shacl:NodeShape",
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/returnValue"
+        },
+        {
+          "shacl:class": "shacl:NodeShape",
+          "shacl:maxCount": 1,
+          "shacl:nodeKind": "shacl:BlankNode",
+          "shacl:path": "https://skl.standard.storage/parameters"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/parametersContext"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:path": "label"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/Integration",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Integration",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/name"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/description"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/Account",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Account",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/integration"
+        },
+        { 
+          "shacl:maxCount": 1, 
+          "shacl:path": "http://schema.org/email" 
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/SecurityCredentials",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Security Credentials",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/refreshToken"
+        },
+        {
+          "shacl:class": "https://skl.standard.storage/Account",
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/account"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/accessToken"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/apiKey"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/clientId"
+        },
+        {
+          "shacl:maxCount": 1,
+          "shacl:path": "https://skl.standard.storage/clientSecret"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/VerbIntegrationMapping",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Verb to Integration Mapping",
+      "rdfs:subClassOf": "https://skl.standard.storage/Mapping",
+      "shacl:closed": false,
+      "shacl:property": [
+        {
+          "shacl:class": "rr:TriplesMap",
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/parameterMapping"
+        },
+        {
+          "shacl:class": "https://skl.standard.storage/Verb",
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/verb"
+        },
+        {
+          "shacl:class": "rr:TriplesMap",
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/operationMapping"
+        },
+        {
+          "shacl:class": "rr:TriplesMap",
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/returnValueMapping"
+        },
+        {
+          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:maxCount": 1,
+          "shacl:minCount": 1,
+          "shacl:nodeKind": "shacl:IRI",
+          "shacl:path": "https://skl.standard.storage/integration"
+        }
+      ]
+    },
+    {
+      "@id": "https://skl.standard.storage/Mapping",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Mapping",
+      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "shacl:closed": false,
+      "shacl:property": {
+        "shacl:maxCount": 1,
+        "shacl:path": "label"
+      }
+    },
+    {
+      "@id": "https://skl.standard.storage/Noun",
+      "@type": ["owl:Class", "shacl:NodeShape"],
+      "label": "Noun",
+      "shacl:closed": false
+    }
+  ]
+}
