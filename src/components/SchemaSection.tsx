@@ -1,4 +1,4 @@
-import { RDFS, Entity } from '@comake/skql-js-engine';
+import { RDFS, Entity } from '@comake/skl-js-engine';
 import React from "react";
 import SchemaNavItem from './SchemaNavItem';
 
@@ -21,7 +21,7 @@ function SchemaSection({ sectionName, schemas }: SchemaSectionProps) {
 
   return (
     <div className='Schema-Section'>
-      <div className='Schema-Section-Header' onClick={toggleOpen}>
+      <div className='Schema-Section-Header Centered' onClick={toggleOpen}>
         <div className={['Schema-Section-Arrow', open ? 'Rotated' : ''].join(' ')}>›</div>
         <div className='Schema-Section-Name'>{ sectionName }</div>
       </div>

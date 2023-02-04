@@ -10,14 +10,15 @@
     "rr": "http://www.w3.org/ns/r2rml#",
     "rml": "http://semweb.mmlab.be/ns/rml#",
     "owl": "http://www.w3.org/2002/07/owl#",
-    "skl": "https://skl.standard.storage/",
+    "skl": "https://standardknowledge.com/ontologies/core/",
     "label": "rdfs:label",
     "schema": "https://schema.org/",
     "rdfs:subClassOf": { "@type": "@id" },
     "rdfs:range": { "@id": "rdfs:range", "@type": "@id" },
     "rdfs:domain": { "@id": "rdfs:domain", "@type": "@id" },
     "account": { "@id": "skl:account", "@type": "@id" },
-    "description": { "@id": "skl:description" },
+    "dcterms": "http://purl.org/dc/elements/1.1/",
+    "description": "dcterms:description",
     "apiKey": { "@id": "skl:apiKey" },
     "accessToken": { "@id": "skl:accessToken" },
     "openApiDescription": { "@id": "skl:openApiDescription", "@type": "@json" },
@@ -30,45 +31,45 @@
   },
   "@graph": [
     {
-      "@id": "https://skl.standard.storage/OpenApiDescription",
+      "@id": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "OpenApiDescription",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": [
         {
-          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:class": "https://standardknowledge.com/ontologies/core/Integration",
           "shacl:maxCount": 1,
           "shacl:minCount": 1,
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/integration"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/integration"
         },
         {
           "shacl:maxCount": 1,
           "shacl:minount": 1,
-          "shacl:path": "https://skl.standard.storage/openApiDescription"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/openApiDescription"
         }
       ]
     },
     {
-      "@id": "https://skl.standard.storage/Collection",
+      "@id": "https://standardknowledge.com/ontologies/core/Collection",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Collection",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": [
         {
           "shacl:nodeKind": "shacl:BlankNodeOrIRI",
-          "shacl:path": "https://skl.standard.storage/records"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/records"
         },
         {
           "shacl:nodeKind": "shacl:BlankNodeOrIRI",
-          "shacl:path": "https://skl.standard.storage/linkedRecords"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/linkedRecords"
         }
       ]
     },
     {
-      "@id": "https://skl.standard.storage/Verb",
+      "@id": "https://standardknowledge.com/ontologies/core/Verb",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Verb",
       "shacl:closed": false,
@@ -76,17 +77,17 @@
         {
           "shacl:class": "shacl:NodeShape",
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/returnValue"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/returnValue"
         },
         {
           "shacl:class": "shacl:NodeShape",
           "shacl:maxCount": 1,
           "shacl:nodeKind": "shacl:BlankNode",
-          "shacl:path": "https://skl.standard.storage/parameters"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/parameters"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/parametersContext"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/parametersContext"
         },
         {
           "shacl:maxCount": 1,
@@ -96,35 +97,35 @@
       ]
     },
     {
-      "@id": "https://skl.standard.storage/Integration",
+      "@id": "https://standardknowledge.com/ontologies/core/Integration",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Integration",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": [
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/name"
+          "shacl:path": "http://www.w3.org/2000/01/rdf-schema#label"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/description"
+          "shacl:path": "http://purl.org/dc/elements/1.1/description"
         }
       ]
     },
     {
-      "@id": "https://skl.standard.storage/Account",
+      "@id": "https://standardknowledge.com/ontologies/core/Account",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Account",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": [
         {
-          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:class": "https://standardknowledge.com/ontologies/core/Integration",
           "shacl:maxCount": 1,
           "shacl:minCount": 1,
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/integration"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/integration"
         },
         { 
           "shacl:maxCount": 1, 
@@ -133,84 +134,84 @@
       ]
     },
     {
-      "@id": "https://skl.standard.storage/SecurityCredentials",
+      "@id": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Security Credentials",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": [
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/refreshToken"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/refreshToken"
         },
         {
-          "shacl:class": "https://skl.standard.storage/Account",
+          "shacl:class": "https://standardknowledge.com/ontologies/core/Account",
           "shacl:maxCount": 1,
           "shacl:minCount": 1,
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/account"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/account"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/accessToken"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/accessToken"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/apiKey"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/apiKey"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/clientId"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/clientId"
         },
         {
           "shacl:maxCount": 1,
-          "shacl:path": "https://skl.standard.storage/clientSecret"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/clientSecret"
         }
       ]
     },
     {
-      "@id": "https://skl.standard.storage/VerbIntegrationMapping",
+      "@id": "https://standardknowledge.com/ontologies/core/VerbIntegrationMapping",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Verb to Integration Mapping",
-      "rdfs:subClassOf": "https://skl.standard.storage/Mapping",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Mapping",
       "shacl:closed": false,
       "shacl:property": [
         {
           "shacl:class": "rr:TriplesMap",
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/parameterMapping"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/parameterMapping"
         },
         {
-          "shacl:class": "https://skl.standard.storage/Verb",
+          "shacl:class": "https://standardknowledge.com/ontologies/core/Verb",
           "shacl:maxCount": 1,
           "shacl:minCount": 1,
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/verb"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/verb"
         },
         {
           "shacl:class": "rr:TriplesMap",
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/operationMapping"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/operationMapping"
         },
         {
           "shacl:class": "rr:TriplesMap",
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/returnValueMapping"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/returnValueMapping"
         },
         {
-          "shacl:class": "https://skl.standard.storage/Integration",
+          "shacl:class": "https://standardknowledge.com/ontologies/core/Integration",
           "shacl:maxCount": 1,
           "shacl:minCount": 1,
           "shacl:nodeKind": "shacl:IRI",
-          "shacl:path": "https://skl.standard.storage/integration"
+          "shacl:path": "https://standardknowledge.com/ontologies/core/integration"
         }
       ]
     },
     {
-      "@id": "https://skl.standard.storage/Mapping",
+      "@id": "https://standardknowledge.com/ontologies/core/Mapping",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Mapping",
-      "rdfs:subClassOf": "https://skl.standard.storage/Noun",
+      "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
       "shacl:closed": false,
       "shacl:property": {
         "shacl:maxCount": 1,
@@ -218,7 +219,7 @@
       }
     },
     {
-      "@id": "https://skl.standard.storage/Noun",
+      "@id": "https://standardknowledge.com/ontologies/core/Noun",
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Noun",
       "shacl:closed": false

@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
-import { ThemeContext } from './contexts/ThemeContext';
-import { ReactComponent as SunIcon } from './images/sun.svg';
-import { ReactComponent as MoonIcon } from './images/moon.svg';
+import ThemeContext from '../contexts/ThemeContext';
+import { ReactComponent as SunIcon } from '../images/sun.svg';
+import { ReactComponent as MoonIcon } from '../images/moon.svg';
 
 
 function ThemeToggle() {
@@ -16,7 +16,7 @@ function ThemeToggle() {
   }, [setTheme, theme]);
   
   return (
-    <button onClick={toggleTheme} className='Theme-Toggle'>
+    <button onClick={toggleTheme} className='Theme-Toggle Centered'>
       { theme === 'dark' ? <SunIcon /> : <MoonIcon /> }
     </button>
   )

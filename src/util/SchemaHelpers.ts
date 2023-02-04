@@ -1,9 +1,9 @@
-import { Entity } from '@comake/skql-js-engine';
+import { Entity } from '@comake/skl-js-engine';
 import type { NodeObject } from 'jsonld';
 import jsonld from 'jsonld';
-import files from './assets/schemas/files.json';
-import events from './assets/schemas/events.json';
-import core from './assets/schemas/core.json';
+import files from '../assets/schemas/files.json';
+import events from '../assets/schemas/events.json';
+import core from '../assets/schemas/core.json';
 import { JsonLdArray } from 'jsonld/jsonld-spec';
 
 export const SCHEMA_SETS = {

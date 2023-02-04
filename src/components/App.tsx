@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import './App.css';
+import '../css/App.css';
 import Header from './Header';
 import AppBody from './AppBody';
-import { ThemeContext } from './contexts/ThemeContext';
-import SchemaContext from './contexts/SchemaContext';
-import { loadSchemaSet, SCHEMA_SETS } from './SchemaHelpers';
+import ThemeContext from '../contexts/ThemeContext';
+import ResultContext from '../contexts/ResultContext';
+import SchemaContext from '../contexts/SchemaContext';
+import { loadSchemaSet, SCHEMA_SETS } from '../util/SchemaHelpers';
 
 function App() { 
   const [theme, setTheme] = useState('dark');
@@ -14,10 +15,17 @@ function App() {
   }>({ coreSchemas: {}, schemas: {} });
   const [selectedSchema, setSelectedSchema] = useState<string>();
   const [openSchemas, setOpenSchemas] = useState<string[]>([]);
+  const [result, setResult] = useState<string>();
+  const [loadingResult, setLoadingResult] = useState(false);
 
   const themeContext = useMemo(
     () => ({ theme, setTheme }), 
     [ theme, setTheme ],
+  );
+
+  const resultContext = useMemo(
+    () => ({ result, setResult, loadingResult, setLoadingResult }), 
+    [ result, setResult, loadingResult, setLoadingResult ],
   );
 
   const schemaContext = useMemo(
@@ -35,12 +43,14 @@ function App() {
 
   return (
     <SchemaContext.Provider value={schemaContext}>
-      <ThemeContext.Provider value={themeContext}>
-        <div className={`App ${theme}`}>
-          <Header />
-          <AppBody />
-        </div>
-      </ThemeContext.Provider>
+      <ResultContext.Provider value={resultContext}>
+        <ThemeContext.Provider value={themeContext}>
+          <div className={`App ${theme}`}>
+            <Header />
+            <AppBody />
+          </div>
+        </ThemeContext.Provider>
+      </ResultContext.Provider>
     </SchemaContext.Provider>
   )
 }

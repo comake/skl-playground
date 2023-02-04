@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SchemaContext from './contexts/SchemaContext';
+import SchemaContext from '../contexts/SchemaContext';
 import SchemaSection from './SchemaSection';
 
 function Explorer() {

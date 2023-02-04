@@ -1,12 +1,12 @@
-import type { Entity } from '@comake/skql-js-engine';
+import type { Entity } from '@comake/skl-js-engine';
 import { createContext } from "react";
 
-type SetSchemaArgs = { 
+interface SetSchemaArgs { 
   schemas: Record<string, Entity>; 
   coreSchemas: Record<string, Entity>;
 };
 
-type SchemaContextType = {
+interface SchemaContextType {
   schemas: Record<string, Entity>;
   coreSchemas: Record<string, Entity>,
   setSchemas: (args: SetSchemaArgs) => void;

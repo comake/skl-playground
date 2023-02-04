@@ -15,24 +15,31 @@
     "xsd": "http://www.w3.org/2001/XMLSchema#",
     "rr": "http://www.w3.org/ns/r2rml#",
     "rml": "http://semweb.mmlab.be/ns/rml#",
+    "example": "https://example.com/",
     "account": { "@id": "skl:account", "@type": "@id" },
-    "description": { "@id": "skl:description" },
+    "dcterms": "http://purl.org/dc/elements/1.1/",
+    "description": "dcterms:description",
     "apiKey": { "@id": "skl:apiKey" },
     "accessToken": { "@id": "skl:accessToken" },
     "openApiDescription": { "@id": "skl:openApiDescription", "@type": "@json" },
-    "skl": "https://skl.standard.storage/",
+    "skl": "https://standardknowledge.com/ontologies/core/",
     "integration": { "@id": "skl:integration", "@type": "@id" },
-    "parametersContext": { "@id": "https://skl.standard.storage/parametersContext", "@type": "@json" },
-    "returnValue": { "@id": "https://skl.standard.storage/returnValue", "@type": "@id" },
-    "parameters": { "@id": "https://skl.standard.storage/parameters" },
+    "parametersContext": { "@id": "https://standardknowledge.com/ontologies/core/parametersContext", "@type": "@json" },
+    "returnValue": { "@id": "https://standardknowledge.com/ontologies/core/returnValue", "@type": "@id" },
+    "parameters": { "@id": "https://standardknowledge.com/ontologies/core/parameters" },
     "shacl:path": { "@type": "@id" },
     "shacl:class": { "@type": "@id" },
     "shacl:datatype": { "@type": "@id" },
+    "shacl:nodeKind": { "@type": "@id" },
     "shacl:maxCount": { "@type": "xsd:integer" },
     "shacl:minCount": { "@type": "xsd:integer" },
     "parameterMapping": {
       "@id": "skl:parameterMapping",
       "@type": "@id"
+    },
+    "parameterMappingFrame": {
+      "@id": "skl:parameterMappingFrame",
+      "@type": "@json"
     },
     "returnValueMapping": {
       "@id": "skl:returnValueMapping",
@@ -53,14 +60,15 @@
     "rr:object": { "@type": "@id" },
     "rr:subject": { "@type": "@id" },
     "rr:class": { "@type": "@id" },
-    "rr:termType": { "@type": "@id" }
+    "rr:termType": { "@type": "@id" },
+    "rr:datatype": { "@type": "@id" }
   },
   "@graph": [
     {
       "@id": "https://example.com/data/sdwi3bh42u2v4",
-      "@type": "https://skl.standard.storage/VerbIntegrationMapping",
-      "integration": "https://skl.standard.storage/integrations/GoogleDrive",
-      "verb": "https://skl.standard.storage/share",
+      "@type": "https://standardknowledge.com/ontologies/core/VerbIntegrationMapping",
+      "integration": "https://example.com/integrations/GoogleDrive",
+      "verb": "https://example.com/share",
       "label": "shareToGoogleDrive",
       "operationMapping": {
         "@type": "rr:TriplesMap",
@@ -80,7 +88,10 @@
             "rr:predicate": "skl:operationId"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subjectMap": {
+          "@type": "rr:SubjectMap",
+          "rr:termType": "rr:BlankNode"
+        }
       },
       "parameterMapping": {
         "@type": "rr:TriplesMap",
@@ -95,10 +106,10 @@
             "@type": "rr:PredicateObjectMap",
             "rr:objectMap": {
               "@type": "rr:ObjectMap",
-              "rml:reference": "entity['http://skl.standard.storage/sourceId']",
+              "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']",
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:fileId"
+            "rr:predicate": "example:fileId"
           },
           {
             "@type": "rr:PredicateObjectMap",
@@ -165,7 +176,7 @@
               },
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:role"
+            "rr:predicate": "example:role"
           },
           {
             "@type": "rr:PredicateObjectMap",
@@ -174,7 +185,7 @@
               "rr:constant": "user",
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:type"
+            "rr:predicate": "example:type"
           },
           {
             "@type": "rr:PredicateObjectMap",
@@ -183,10 +194,21 @@
               "rml:reference": "emailAddress",
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:emailAddress"
+            "rr:predicate": "example:emailAddress"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subjectMap": {
+          "@type": "rr:SubjectMap",
+          "rr:termType": "rr:BlankNode"
+        }
+      },
+      "parameterMappingFrame": {
+        "@context": {
+          "fileId": "https://example.com/fileId",
+          "role": "https://example.com/role",
+          "type": "https://example.com/type",
+          "emailAddress": "https://example.com/emailAddress"
+        }
       },
       "returnValueMapping": {
         "@type": "rr:TriplesMap",
@@ -234,21 +256,20 @@
         ],
         "rr:subjectMap": {
           "@type": "rr:SubjectMap",
-          "rr:template": "https://skl.standard.storage/mappingSubject",
           "rr:termType": "rr:BlankNode"
         }
       },
       "returnValueFrame": {
         "@context": {
-          "success": { "@id": "https://skl.standard.storage/success" }
+          "success": { "@id": "https://standardknowledge.com/ontologies/core/success" }
         }
       }
     },
     {
       "@id": "https://example.com/data/235b34iu5",
-      "@type": "https://skl.standard.storage/VerbIntegrationMapping",
-      "integration": "https://skl.standard.storage/integrations/Dropbox",
-      "verb": "https://skl.standard.storage/share",
+      "@type": "https://standardknowledge.com/ontologies/core/VerbIntegrationMapping",
+      "integration": "https://example.com/integrations/Dropbox",
+      "verb": "https://example.com/share",
       "label": "shareToDropbox",
       "operationMapping": {
         "@type": "rr:TriplesMap",
@@ -268,7 +289,10 @@
             "rr:predicate": "skl:operationId"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subjectMap": {
+          "@type": "rr:SubjectMap",
+          "rr:termType": "rr:BlankNode"
+        }
       },
       "parameterMapping": {
         "@type": "rr:TriplesMap",
@@ -344,76 +368,72 @@
               },
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:access_level"
+            "rr:predicate": "example:access_level"
           },
           {
             "@type": "rr:PredicateObjectMap",
             "rr:objectMap": {
               "@type": "rr:ObjectMap",
-              "rml:reference": "entity['http://skl.standard.storage/sourceId']"           
+              "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']"           
             },
-            "rr:predicate": "skl:file"
+            "rr:predicate": "example:file"
           },
           {
             "@type": "rr:PredicateObjectMap",
-            "rr:objectMap": [
-              {
-                "@type": "rr:ObjectMap",
-                "rr:parentTriplesMap": {
-                  "@type": "rr:TriplesMap",
-                  "rml:logicalSource": {
-                    "@type": "rml:LogicalSource",
-                    "rml:iterator": "$",
-                    "rml:referenceFormulation": "http://semweb.mmlab.be/ns/ql#JSONPath",
-                    "rml:source": "input.json"
+            "rr:objectMap": {
+              "@type": "rr:ObjectMap",
+              "rr:parentTriplesMap": {
+                "@type": "rr:TriplesMap",
+                "rml:logicalSource": {
+                  "@type": "rml:LogicalSource",
+                  "rml:iterator": "$",
+                  "rml:referenceFormulation": "http://semweb.mmlab.be/ns/ql#JSONPath",
+                  "rml:source": "input.json"
+                },
+                "rr:predicateObjectMap": [
+                  {
+                    "@type": "rr:PredicateObjectMap",
+                    "rr:objectMap": {
+                      "@type": "rr:ObjectMap",
+                      "rml:reference": "emailAddress"           
+                    },
+                    "rr:predicate": "example:email"
                   },
-                  "rr:predicateObjectMap": [
-                    {
-                      "@type": "rr:PredicateObjectMap",
-                      "rr:objectMap": {
-                        "@type": "rr:ObjectMap",
-                        "rml:reference": "emailAddress"           
-                      },
-                      "rr:predicate": "skl:email"
-                    }
-                  ],
-                  "rr:subjectMap": {
-                    "@type": "rr:SubjectMap",
-                    "rr:termType": "rr:BlankNode"
+                  {
+                    "@type": "rr:PredicateObjectMap",
+                    "rr:objectMap": {
+                      "@type": "rr:ObjectMap",
+                      "rr:constant": "email"           
+                    },
+                    "rr:predicate": "example:.tag"
                   }
-                }         
-              },
-              {
-                "@type": "rr:ObjectMap",
-                "rr:parentTriplesMap": {
-                  "@type": "rr:TriplesMap",
-                  "rml:logicalSource": {
-                    "@type": "rml:LogicalSource",
-                    "rml:iterator": "$",
-                    "rml:referenceFormulation": "http://semweb.mmlab.be/ns/ql#JSONPath",
-                    "rml:source": "input.json"
-                  },
-                  "rr:predicateObjectMap": [
-                    {
-                      "@type": "rr:PredicateObjectMap",
-                      "rr:objectMap": {
-                        "@type": "rr:ObjectMap",
-                        "rr:constant": "email"           
-                      },
-                      "rr:predicate": "skl:.tag"
-                    }
-                  ],
-                  "rr:subjectMap": {
-                    "@type": "rr:SubjectMap",
-                    "rr:termType": "rr:BlankNode"
-                  }
-                }         
-              }
-            ],
-            "rr:predicate": "skl:members"
+                ],
+                "rr:subjectMap": {
+                  "@type": "rr:SubjectMap",
+                  "rr:termType": "rr:BlankNode"
+                }
+              }         
+            },
+            "rr:predicate": "example:members"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subject": "https://example.com/mappingSubject"
+      },
+      "parameterMappingFrame": {
+        "@context": {
+          "access_level": {
+            "@id": "https://example.com/access_level",
+            "@type": "http://www.w3.org/2001/XMLSchema#string"
+          },
+          "file": "https://example.com/file",
+          "email": "https://example.com/email",
+          ".tag": "https://example.com/.tag",
+          "members": {
+            "@id": "https://example.com/members",
+            "@container": "@set"
+          }
+        },
+        "@id": "https://example.com/mappingSubject"
       },
       "returnValueMapping": {
         "@type": "rr:TriplesMap",
@@ -434,57 +454,82 @@
                 "rr:predicateObjectMap": [
                   {
                     "@type": "rr:PredicateObjectMap",
-                    "rr:object": "http://users.ugent.be/~bjdmeest/function/grel.ttl#boolean_not",
+                    "rr:object": "http://example.com/idlab/function/equal",
                     "rr:predicate": "https://w3id.org/function/ontology#executes"
                   },
                   {
                     "@type": "rr:PredicateObjectMap",
-                    "rr:predicate": "http://users.ugent.be/~bjdmeest/function/grel.ttl#bool_b",
+                    "rr:predicate": "http://users.ugent.be/~bjdmeest/function/grel.ttl#valueParameter",
                     "rr:objectMap": {
                       "@type": "rr:ObjectMap",
+                      "rr:datatype": "xsd:integer",
                       "fnml:functionValue": {
                         "@type": "fnml:FunctionValue",
                         "rr:predicateObjectMap": [
                           {
                             "@type": "rr:PredicateObjectMap",
-                            "rr:object": "http://example.com/idlab/function/isNull",
+                            "rr:object": "http://users.ugent.be/~bjdmeest/function/grel.ttl#array_length",
                             "rr:predicate": "https://w3id.org/function/ontology#executes"
                           },
                           {
                             "@type": "rr:PredicateObjectMap",
-                            "rr:predicate": "http://example.com/idlab/function/str",
+                            "rr:predicate": "http://users.ugent.be/~bjdmeest/function/grel.ttl#p_array_a",
                             "rr:objectMap": {
                               "@type": "rr:ObjectMap",
-                              "rml:reference": "result.success"
+                              "rml:reference": "[*].result.member_error"
                             }
                           }
                         ]
                       }
+                    }
+                  },
+                  {
+                    "@type": "rr:PredicateObjectMap",
+                    "rr:predicate": "http://users.ugent.be/~bjdmeest/function/grel.ttl#valueParameter2",
+                    "rr:objectMap": {
+                      "@type": "rr:ObjectMap",
+                      "rr:constant": 0,
+                      "rr:datatype": "xsd:integer"
                     }
                   }
                 ]
               }  
             },
             "rr:predicate": "skl:success"
+          },
+          {
+            "@type": "rr:PredicateObjectMap",
+            "rr:predicate": "skl:originalResponse",
+            "rr:objectMap": {
+              "@type": "rr:ObjectMap",
+              "rml:reference": "[*]",
+              "rr:datatype": "rdf:JSON"
+            }
           }
         ],
         "rr:subjectMap": {
           "@type": "rr:SubjectMap",
-          "rr:template": "https://skl.standard.storage/mappingSubject",
           "rr:termType": "rr:BlankNode"
         }
       },
       "returnValueFrame": {
         "@context": {
-          "success": { "@id": "https://skl.standard.storage/success" }
+          "success": {
+            "@type": "http://www.w3.org/2001/XMLSchema#boolean",
+            "@id": "https://standardknowledge.com/ontologies/core/success"
+          },
+          "originalResponse": {
+            "@type": "@json",
+            "@id": "https://standardknowledge.com/ontologies/core/originalResponse"
+          }
         }
       }
     },
     {
       "@id": "https://example.com/data/dfbdf9b7dfb8",
-      "@type": "https://skl.standard.storage/VerbIntegrationMapping",
-      "integration": "https://skl.standard.storage/integrations/Box",
-      "verb": "https://skl.standard.storage/share",
+      "@type": "https://standardknowledge.com/ontologies/core/VerbIntegrationMapping",
+      "integration": "https://example.com/integrations/Box",
+      "verb": "https://example.com/share",
       "label": "shareToBox",
       "operationMapping": {
         "@type": "rr:TriplesMap",
@@ -504,7 +549,10 @@
             "rr:predicate": "skl:operationId"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subjectMap": {
+          "@type": "rr:SubjectMap",
+          "rr:termType": "rr:BlankNode"
+        }
       },
       "parameterMapping": {
         "@type": "rr:TriplesMap",
@@ -534,15 +582,15 @@
                       "@type": "rr:ObjectMap",
                       "rr:constant": "file"           
                     },
-                    "rr:predicate": "skl:type"
+                    "rr:predicate": "example:type"
                   },
                   {
                     "@type": "rr:PredicateObjectMap",
                     "rr:objectMap": {
                       "@type": "rr:ObjectMap",
-                      "rml:reference": "entity['http://skl.standard.storage/sourceId']"           
+                      "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']"           
                     },
-                    "rr:predicate": "skl:id"
+                    "rr:predicate": "example:id"
                   }
                 ],
                 "rr:subjectMap": {
@@ -551,7 +599,7 @@
                 }
               }
             },
-            "rr:predicate": "skl:item"
+            "rr:predicate": "example:item"
           },
           {
             "@type": "rr:PredicateObjectMap",
@@ -618,7 +666,7 @@
               },
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
-            "rr:predicate": "skl:role"
+            "rr:predicate": "example:role"
           },
           {
             "@type": "rr:PredicateObjectMap",
@@ -639,7 +687,7 @@
                       "@type": "rr:ObjectMap",
                       "rr:constant": "user"           
                     },
-                    "rr:predicate": "skl:type"
+                    "rr:predicate": "example:type"
                   },
                   {
                     "@type": "rr:PredicateObjectMap",
@@ -647,7 +695,7 @@
                       "@type": "rr:ObjectMap",
                       "rml:reference": "emailAddress"           
                     },
-                    "rr:predicate": "skl:login"
+                    "rr:predicate": "example:login"
                   }
                 ],
                 "rr:subjectMap": {
@@ -656,10 +704,21 @@
                 }
               }
             },
-            "rr:predicate": "skl:accessible_by"
+            "rr:predicate": "example:accessible_by"
           }
         ],
-        "rr:subject": "https://skl.standard.storage/mappingSubject"
+        "rr:subject": "https://example.com/mappingSubject"
+      },
+      "parameterMappingFrame": {
+        "@context": {
+          "type": "https://example.com/type",
+          "id": "https://example.com/id",
+          "item": "https://example.com/item",
+          "role": "https://example.com/role",
+          "login": "https://example.com/login",
+          "accessible_by": "https://example.com/accessible_by"
+        },
+        "@id": "https://example.com/mappingSubject"
       },
       "returnValueMapping": {
         "@type": "rr:TriplesMap",
@@ -707,111 +766,134 @@
         ],
         "rr:subjectMap": {
           "@type": "rr:SubjectMap",
-          "rr:template": "https://skl.standard.storage/mappingSubject",
           "rr:termType": "rr:BlankNode"
         }
       },
       "returnValueFrame": {
         "@context": {
-          "success": { "@id": "https://skl.standard.storage/success" }
+          "success": { "@id": "https://standardknowledge.com/ontologies/core/success" }
         }
       }
     },
     {
-      "@id": "https://skl.standard.storage/share",
-      "@type": "https://skl.standard.storage/Verb",
+      "@id": "https://example.com/share",
+      "@type": "https://standardknowledge.com/ontologies/core/Verb",
       "label": "share",
       "parametersContext": {
         "entity": {
-          "@id": "https://skl.standard.storage/entity",
+          "@id": "https://example.com/entity",
           "@type": "@id"
         },
         "account": {
-          "@id": "https://skl.standard.storage/account",
+          "@id": "https://example.com/account",
           "@type": "@id"
+        },
+        "permission": {
+          "@id": "https://example.com/permission",
+          "@type": "http://www.w3.org/2001/XMLSchema#string"
+        },
+        "emailAddress": {
+          "@id": "https://example.com/emailAddress",
+          "@type": "http://www.w3.org/2001/XMLSchema#string"
         }
       },
       "parameters": {
         "@type": "shacl:NodeShape",
-        "shacl:targetClass": "https://skl.standard.storage/Parameters",
+        "shacl:targetClass": "https://standardknowledge.com/ontologies/core/Parameters",
         "shacl:property": [
           {
             "shacl:maxCount": 1,
             "shacl:minCount": 1,
             "shacl:name": "entity",
-            "shacl:path": "https://skl.standard.storage/entity"
+            "shacl:path": "https://example.com/entity"
           },
           {
             "shacl:maxCount": 1,
             "shacl:minCount": 1,
             "shacl:name": "account",
-            "shacl:path": "https://skl.standard.storage/account"
+            "shacl:path": "https://example.com/account",
+            "shacl:nodeKind": "shacl:IRI",
+            "shacl:class": "https://standardknowledge.com/ontologies/core/Account"
+          },
+          {
+            "shacl:maxCount": 1,
+            "shacl:minCount": 1,
+            "shacl:name": "permission",
+            "shacl:path": "https://example.com/permission",
+            "shacl:datatype": "xsd:string"
+          },
+          {
+            "shacl:maxCount": 1,
+            "shacl:minCount": 1,
+            "shacl:name": "emailAddress",
+            "shacl:path": "https://example.com/emailAddress",
+            "shacl:datatype": "xsd:string"
           }
         ]
       }
     },
     {
-      "@id": "https://skl.standard.storage/integrations/GoogleDrive",
-      "@type": "https://skl.standard.storage/nouns/Integration",
+      "@id": "https://example.com/integrations/GoogleDrive",
+      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
       "description": "Learn about Google Drive’s file sharing platform that provides a personal, secure cloud storage option to share content with other users.",
       "label": "Google Drive"
     },
     {
-      "@id": "https://skl.standard.storage/integrations/Dropbox",
-      "@type": "https://skl.standard.storage/nouns/Integration",
-      "https://skl.standard.storage/properties/description": "Dropbox is a modern workspace designed to reduce busywork-so you can focus on the things that matter. Sign in and put your creative energy to work.",
+      "@id": "https://example.com/integrations/Dropbox",
+      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
+      "https://standardknowledge.com/ontologies/core/properties/description": "Dropbox is a modern workspace designed to reduce busywork-so you can focus on the things that matter. Sign in and put your creative energy to work.",
       "label": "Dropbox"
     },
     {
-      "@id": "https://skl.standard.storage/integrations/Box",
-      "@type": "https://skl.standard.storage/nouns/Integration",
-      "https://skl.standard.storage/properties/description": "Box empowers your teams by making it easy to work with people inside and outside your organization, protect your valuable content, and connect all your apps.",
+      "@id": "https://example.com/integrations/Box",
+      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
+      "https://standardknowledge.com/ontologies/core/properties/description": "Box empowers your teams by making it easy to work with people inside and outside your organization, protect your valuable content, and connect all your apps.",
       "label": "Box"
     },
     {
       "@id": "https://example.com/data/GoogleDriveAccount",
-      "@type": "https://skl.standard.storage/Account",
-      "integration": "https://skl.standard.storage/integrations/GoogleDrive",
+      "@type": "https://standardknowledge.com/ontologies/core/Account",
+      "integration": "https://example.com/integrations/GoogleDrive",
       "label": "Google Drive Account"
     },
     {
       "@id": "https://example.com/data/DropboxAccount",
-      "@type": "https://skl.standard.storage/Account",
-      "integration": "https://skl.standard.storage/integrations/Dropbox",
+      "@type": "https://standardknowledge.com/ontologies/core/Account",
+      "integration": "https://example.com/integrations/Dropbox",
       "label": "Dropbox Account"
     },
     {
       "@id": "https://example.com/data/BoxAccount",
-      "@type": "https://skl.standard.storage/Account",
-      "integration": "https://skl.standard.storage/integrations/Box",
+      "@type": "https://standardknowledge.com/ontologies/core/Account",
+      "integration": "https://example.com/integrations/Box",
       "label": "Box Account"
     },
     {
       "@id": "https://example.com/data/GoogleDriveAccountSecurityCredentials",
-      "@type": "https://skl.standard.storage/SecurityCredentials",
+      "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "label": "Google Drive Security Credentials",
       "account": "https://example.com/data/GoogleDriveAccount",
       "accessToken": "ENV_GOOGLE_DRIVE_ACCESS_TOKEN"
     },
     {
       "@id": "https://example.com/data/DropboxAccountSecurityCredentials",
-      "@type": "https://skl.standard.storage/SecurityCredentials",
+      "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "label": "Dropbox Security Credentials",
       "account": "https://example.com/data/DropboxAccount",
       "accessToken": "ENV_DROPBOX_ACCESS_TOKEN"
     },
     {
       "@id": "https://example.com/data/BoxAccountSecurityCredentials",
-      "@type": "https://skl.standard.storage/SecurityCredentials",
+      "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "label": "Box Security Credentials",
       "account": "https://example.com/data/BoxAccount",
       "accessToken": "ENV_BOX_ACCESS_TOKEN"
     },
     {
       "@id": "https://example.com/data/GoogleDriveOpenApiDescription",
-      "@type": "https://skl.standard.storage/OpenApiDescription",
+      "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "label": "Google Drive OpenAPI Description",
-      "integration": "https://skl.standard.storage/integrations/GoogleDrive",
+      "integration": "https://example.com/integrations/GoogleDrive",
       "openApiDescription": {
         "openapi": "3.0.0",
         "servers": [
@@ -7417,9 +7499,9 @@
     },
     {
       "@id": "https://example.com/data/DropboxOpenApiDescription",
-      "@type": "https://skl.standard.storage/OpenApiDescription",
+      "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "label": "Dropbox OpenAPI Description",
-      "integration": "https://skl.standard.storage/integrations/Dropbox",
+      "integration": "https://example.com/integrations/Dropbox",
       "openApiDescription": {
         "openapi": "3.0.3",
         "info": {
@@ -8801,9 +8883,9 @@
     },
     {
       "@id": "https://example.com/data/BoxOpenApiDescription",
-      "@type": "https://skl.standard.storage/OpenApiDescription",
+      "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "label": "Box OpenAPI Description",
-      "integration": "https://skl.standard.storage/integrations/Box",
+      "integration": "https://example.com/integrations/Box",
       "openApiDescription": {
         "openapi": "3.0.2",
         "servers": [

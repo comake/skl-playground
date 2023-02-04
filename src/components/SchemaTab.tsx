@@ -1,15 +1,16 @@
-import { ReactComponent as CloseIcon } from './images/close.svg';
-import { RDFS } from '@comake/skql-js-engine';
+import { ReactComponent as CloseIcon } from '../images/close.svg';
+import { RDFS } from '@comake/skl-js-engine';
 import { useCallback, useContext, useMemo } from 'react';
-import SchemaContext from './contexts/SchemaContext';
+import SchemaContext from '../contexts/SchemaContext';
 
 export interface SchemaTabProps {
   schema: string;
+  saved: boolean;
 }
 
 export type ClickEvent = React.MouseEvent<HTMLButtonElement>;
 
-function SchemaTab({ schema }: SchemaTabProps) {
+function SchemaTab({ schema, saved }: SchemaTabProps) {
   const { schemas, coreSchemas, selectedSchema, setSelectedSchema, openSchemas, setOpenSchemas } = useContext(SchemaContext);
 
   const schemaContent = useMemo(() => {
@@ -25,11 +26,13 @@ function SchemaTab({ schema }: SchemaTabProps) {
     const isOpen = openSchemas.includes(schema);
     const isSelected = selectedSchema === schema;
     return [
-      'Schema-Tab', 
+      'Schema-Tab',
+      'Centered', 
+      saved ? '' : 'unsaved',
       isSelected ? 'selected' : '',
       isOpen ? '' : 'not-open'
     ].join(' '); 
-  }, [openSchemas, schema, selectedSchema]);
+  }, [openSchemas, schema, selectedSchema, saved]);
 
   const setSchemaToSelected = useCallback(() => {
     setSelectedSchema(schema)
@@ -54,7 +57,7 @@ function SchemaTab({ schema }: SchemaTabProps) {
         } else {
           setSelectedSchema(openSchemas[indexInOpen - 1]);
         }
-      } else if (openSchemas.length > 1) {
+      } else if (!isOpen && openSchemas.length > 0) {
         setSelectedSchema(openSchemas[openSchemas.length - 1])
       } else {
         setSelectedSchema(undefined);
@@ -73,7 +76,7 @@ function SchemaTab({ schema }: SchemaTabProps) {
             : 'Not Found'
           }  
         </div>
-        <button onClick={closeSchema} className='Close-Tab-Button'>
+        <button onClick={closeSchema} className='Close-Tab-Button Centered'>
           <CloseIcon className='Close-Icon'/>
         </button>
     </div>

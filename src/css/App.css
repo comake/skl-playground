@@ -1,0 +1,542 @@
+html {
+  background-color: rgb(245, 245, 245);
+}
+
+html, body, #root {
+  overflow: hidden;
+}
+
+html, body, #root, .App {
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+/* General Overrides */
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Util Styles */
+.Flex-Spacer {
+  flex: 1;
+}
+
+.Centered {
+  display: flex;
+  align-items: center;
+}
+
+/* Theme Styles */
+.App.dark {
+  color-scheme: dark;
+  
+  --header-icon-color: white;
+  --icon-color: rgb(84, 88, 93);
+  
+  --primary-text-color: rgb(215, 218, 224);
+  --secondary-text-color: #abb2bf;
+  --tertiary-text-color: rgba(215, 218, 224, 0.25);
+
+  --header-background-color: rgb(33, 37, 43);
+  --header-border-color: rgb(28, 30, 36);
+
+  --main-background-color: rgb(40, 44, 52);
+  --schema-explorer-background-color: rgb(33, 37, 43);
+
+  --explorer-item-selected-color: #2c313a;
+  --explorer-item-hover-color: rgba(44, 49, 58, 0.4);
+
+  --button-hover-color: #333842;
+
+  --warning-background-color: rgba(255, 0, 0, 0.15);
+
+  --dropbox-background-color: rgb(53, 59, 69);
+
+  --cta-button-color: #ff88fd;
+}
+
+.App.light {
+  --header-icon-color: #24292f;
+  --icon-color: rgb(177, 184, 190);
+
+  --primary-text-color: #24292f;
+  --secondary-text-color: rgb(30, 30, 30);
+  --tertiary-text-color: rgba(87, 96, 106, 0.5);
+
+  --header-background-color: rgb(246, 248, 250);
+  --header-border-color: hsl(210, 18%, 84%);
+
+  --main-background-color: rgb(255, 255, 255);
+  --schema-explorer-background-color: rgb(246, 248, 250);
+
+  --explorer-item-selected-color: rgba(175, 184, 193, 0.2);
+  --explorer-item-hover-color: rgba(234, 238, 242, 0.5);
+
+  --button-hover-color: rgb(175 184 193 / 20%);
+
+  --warning-background-color: rgba(255, 0, 0, 0.15);
+
+  --dropbox-background-color: rgb(255, 255, 255);
+
+  --cta-button-color: #ff88fd;
+}
+
+/* Component Specific Styles */
+
+.Theme-Toggle {
+  background: none;
+  border: none;
+  outline: none;
+  height: 26px;
+  width: 26px;
+  border-radius: 50%;
+  justify-content: center;
+}
+
+.Theme-Toggle:hover {
+  background-color: var(--button-hover-color);
+}
+
+.Theme-Toggle svg {
+  height: 16px;
+  width: 16px;
+  fill: var(--header-icon-color);
+  stroke: var(--header-icon-color);
+}
+
+.Header {
+  padding: 0 10px;
+  height: 42px;
+  border-bottom: 1px solid var(--header-border-color);
+  background-color: var(--header-background-color);
+}
+
+.Header-Text {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-text-color);
+}
+
+.Header-Logo {
+  height: 24px;
+  width: 24px;
+  margin-right: 10px;
+}
+
+.Body {
+  background-color: var(--main-background-color);
+}
+
+.Split-View-Container {
+  position: relative;
+}
+
+.Split-View-Container > .Split-View-View {
+  position: absolute;
+}
+
+.Split-View-Container:not(.vertical) > .Split-View-View {
+  height: 100%;
+  top: 0;
+}
+
+.Split-View-Container.vertical > .Split-View-View {
+  width: 100%;
+  left: 0;
+}
+
+.Split-View-View .Split-View-Container {
+  height: 100%;
+  width: 100%;
+}
+
+.Operation-View {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+.Operation-Configuration {
+  padding: 5px 15px 15px 15px;
+  overflow: auto;
+  flex: 1;
+}
+
+.Results-View {
+  height: 100%;
+  width: 100%;
+}
+
+.Explorer {
+  height:100%;
+  background-color: var(--schema-explorer-background-color);
+  overflow: auto;
+  border-right: 1px solid var(--header-border-color);
+}
+
+.Schema-Section-Header {
+  padding: 11px 10px;
+  font-weight: 500;
+}
+
+.Schema-Section-Header, .Schema-Nav-Item  {
+  cursor: pointer;
+}
+
+.Schema-Section-Name, .Schema-Nav-Item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
+  color: var(--secondary-text-color);
+}
+
+.Schema-Nav-Item {
+  padding: 5px 10px 5px 35px;
+}
+
+.Schema-Nav-Item:hover, .Schema-Section-Header:hover {
+  background-color: var(--explorer-item-hover-color);
+}
+
+.Schema-Nav-Item.Selected {
+  background-color: var(--explorer-item-selected-color);
+  color: var(--primary-text-color);
+}
+
+
+.Schema-Section-Arrow {
+  margin-right: 7px;
+  font-size: 13px;
+  color: var(--secondary-text-color);
+}
+
+.Schema-Section-Arrow.Rotated {
+  transform: rotate(90deg);
+}
+
+.Editor-Group {
+  height: 100%;
+  border-right: 1px solid var(--header-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.Editor-Group-Tabs {
+  display: flex;
+  align-items: flex-start;
+  background-color: var(--header-background-color);
+  flex-shrink: 0;
+  overflow: auto;
+}
+
+.Editor-Group-Tabs .Flex-Spacer {
+  height: 100%;
+  flex: 1;
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+.Schema-Editor-Toolbar {
+  padding: 5px;
+}
+
+.Core-Schema-Warning {
+  font-size: 12px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  background-color: var(--warning-background-color);
+  color: #ff1818;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Editor {
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+.Schema-Editor {
+  display: block;
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+  overflow: hidden;
+}
+
+.Schema-Editor.hidden {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.Schema-Editor .cm-lineNumbers {
+  min-width: 24px;
+}
+
+.Schema-Tab {
+  z-index: 2;
+  font-size: 13px;
+  color: var(--tertiary-text-color);
+  border-right: 1px solid var(--header-border-color);
+  border-bottom: 1px solid var(--header-border-color);
+  padding: 8px 3px 7px 10px;
+  cursor: pointer;
+  max-width: 250px;
+  min-width: 100px;
+  overflow: visible;
+  position: relative;
+}
+
+.Schema-Tab .Schema-Tab-Name {
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.Schema-Tab .Close-Tab-Button {
+  height: 20px;
+  width: 20px;
+  border-radius: 4px;
+  justify-content: center;
+  border: none;
+  outline: none;
+  margin-left: 3px;
+  background-color: transparent;
+  color: var(--tertiary-text-color);
+}
+
+.Schema-Tab.unsaved .Close-Tab-Button:not(:hover) .Close-Icon {
+  display: none;
+}
+
+.Schema-Tab.unsaved .Close-Tab-Button:not(:hover)::after {
+  content: '●';
+  font-size: 17px;
+}
+
+.Schema-Tab:not(.unsaved):not(:hover):not(.selected) .Close-Icon {
+  visibility: hidden;
+}
+
+.Schema-Tab .Close-Tab-Button:hover { 
+  background-color: var(--button-hover-color);
+}
+
+.Schema-Tab .Close-Tab-Button .Close-Icon {
+  height: 10px;
+  width: 10px;
+  min-height: 10px;
+  min-width: 10px;
+  fill: var(--icon-color);
+}
+
+.Schema-Tab:hover {
+  background-color: var(--explorer-item-hover-color);
+}
+
+.Schema-Tab.selected {
+  color: var(--primary-text-color);
+  background-color: var(--main-background-color);
+  border-bottom: 1px solid var(--main-background-color);
+}
+
+.Schema-Tab.selected .Close-Tab-Button {
+  color: var(--primary-text-color);
+}
+
+.Schema-Tab.selected .Close-Tab-Button .Close-Icon {
+  fill: var(--secondary-text-color);
+}
+
+.Schema-Tab.not-open {
+  font-style: italic;
+}
+
+.Select-Wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.Select-Wrapper select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.Select-Wrapper::after {
+  content: "▾";
+  font-size: 1.0rem;
+  top: 8px;
+  right: 10px;
+  position: absolute;
+  color:rgb(130, 130, 130);
+  font-family: sans-serif;
+  pointer-events: none;
+}
+
+input:not([type='checkbox']), select {
+  height:36px;
+  padding: 0 10px;
+}
+
+input:not([type='checkbox']), select, textarea {
+  background-color: var(--dropbox-background-color);
+}
+
+input:not([type='checkbox']), 
+select, 
+textarea {
+  border-radius: 5px;
+  border: 1px solid var(--header-border-color);
+}
+
+select {
+  cursor: pointer;
+  padding: 0 30px 0 10px;
+}
+
+.Verb-Select .Select-Wrapper {
+  flex: 1;
+}
+
+.Select-Wrapper select {
+  width: 100%;
+}
+
+.Verb-Select label {
+  color: var(--secondary-text-color);
+}
+
+.Operation-Section-Header {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--secondary-text-color);
+  margin: 15px 0 10px 0;
+}
+
+.Parameter-Input-Row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.Parameter-Input-Row .Parameter-Name {
+  margin-top:11px;
+  font-size: 13px;
+  width: 130px;
+  min-width: 130px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: var(--secondary-text-color);
+}
+
+.Parameter-Input-Wrapper {
+  flex: 1;
+  overflow: hidden;
+}
+
+.Parameter-Input-Wrapper .Operation-Parameter-Input, .Parameter-Input-Wrapper .Select-Wrapper {
+  width: 100%;
+}
+
+.Operation-Parameter-Input .cm-editor {
+  border-radius: 5px;
+  border: 1px solid var(--header-border-color);
+  overflow: hidden;
+  min-height: 60px;
+}
+
+.App.light .cm-activeLineGutter {
+  background-color: #cceeff44;
+}
+
+.App.dark .cm-activeLineGutter {
+  background-color: #6699ff0b;
+}
+
+.Operation-Toolbar {
+  padding: 10px 15px;
+  /* border-top: 1px solid var(--header-border-color); */
+  background-color: var(--main-background-color);
+}
+
+.Run-Operation-Button {
+  background-color: var(--cta-button-color);
+  color: white;
+  font-weight: 600;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.Run-Operation-Button:disabled {
+  background-color: var(--icon-color);
+  pointer-events: none;
+}
+
+.Operation-Error {
+  font-size: 12px;
+  padding: 3px 4px;
+  border-radius: 4px;
+  background-color: var(--warning-background-color);
+  color: #ff1818;
+}
+
+.Result-View {
+  overflow: hidden;
+  height: 100%;
+}
+
+.Result-View-Code {
+  overflow: hidden;
+  height: 100%;
+}
+
+.Result-Loading-Icon-Container {
+  margin-top: 60px;
+  width: 100%;
+  justify-content: center;
+}
+
+.Result-Loading-Icon {
+  height:40px;
+  width:40px;
+  position: relative;
+  -webkit-animation: rotation 0.75s infinite linear;
+  -moz-animation: rotation 0.75s infinite linear;
+  -o-animation: rotation 0.75s infinite linear;
+  animation: rotation 0.75s infinite linear;
+  border:3px solid transparent;
+  border-radius:100%;
+}
+
+.Result-Loading-Icon::before {
+  content:"";
+  display:block;
+  position:absolute;
+  left:-3px;
+  top:-3px;
+  height:100%;
+  width:100%;
+  border-top:3px solid var(--icon-color);
+  border-left:3px solid var(--icon-color);
+  border-bottom:3px solid transparent;
+  border-right:3px solid transparent;
+  border-radius:100%;
+}

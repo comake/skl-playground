@@ -1,6 +1,6 @@
-import { Entity, RDFS } from '@comake/skql-js-engine';
+import { Entity, RDFS } from '@comake/skl-js-engine';
 import React, { useCallback, useContext, useMemo } from "react";
-import SchemaContext from './contexts/SchemaContext';
+import SchemaContext from '../contexts/SchemaContext';
 
 export interface SchemaNavItemProps {
   schema: Entity;
