@@ -834,19 +834,19 @@
     },
     {
       "@id": "https://example.com/integrations/GoogleDrive",
-      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
+      "@type": "https://standardknowledge.com/ontologies/core/Integration",
       "description": "Learn about Google Drive’s file sharing platform that provides a personal, secure cloud storage option to share content with other users.",
       "label": "Google Drive"
     },
     {
       "@id": "https://example.com/integrations/Dropbox",
-      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
+      "@type": "https://standardknowledge.com/ontologies/core/Integration",
       "https://standardknowledge.com/ontologies/core/properties/description": "Dropbox is a modern workspace designed to reduce busywork-so you can focus on the things that matter. Sign in and put your creative energy to work.",
       "label": "Dropbox"
     },
     {
       "@id": "https://example.com/integrations/Box",
-      "@type": "https://standardknowledge.com/ontologies/core/nouns/Integration",
+      "@type": "https://standardknowledge.com/ontologies/core/Integration",
       "https://standardknowledge.com/ontologies/core/properties/description": "Box empowers your teams by making it easy to work with people inside and outside your organization, protect your valuable content, and connect all your apps.",
       "label": "Box"
     },

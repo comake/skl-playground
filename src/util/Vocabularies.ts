@@ -14,6 +14,12 @@ function createNamespace<T extends string, TBase extends string>(
 export const SKL = createNamespace('https://standardknowledge.com/ontologies/core/', [
   'parameters',
   'Verb',
+  'OpenApiDescription',
+  'Integration',
+  'VerbIntegrationMapping',
+  'VerbNounMapping',
+  'Account',
+  'SecurityCredentials',
 ]);
 
 export const SHACL = createNamespace('http://www.w3.org/ns/shacl#', [
@@ -45,4 +51,8 @@ export const XSD = createNamespace('http://www.w3.org/2001/XMLSchema#', [
 export const GREL = createNamespace('http://users.ugent.be/~bjdmeest/function/grel.ttl#', [
   'array_length',
   'p_array_a',
+]);
+
+export const OWL = createNamespace('http://www.w3.org/2002/07/owl#', [
+  'Class'
 ])

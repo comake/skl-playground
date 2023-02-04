@@ -185,13 +185,9 @@ button {
   border-right: 1px solid var(--header-border-color);
 }
 
-.Schema-Section-Header {
-  padding: 11px 10px;
-  font-weight: 500;
-}
-
 .Schema-Section-Header, .Schema-Nav-Item  {
   cursor: pointer;
+  padding: 5px 10px;
 }
 
 .Schema-Section-Name, .Schema-Nav-Item {
@@ -202,8 +198,20 @@ button {
   color: var(--secondary-text-color);
 }
 
-.Schema-Nav-Item {
-  padding: 5px 10px 5px 35px;
+.Schema-Section:not(.open) .Schema-Section, .Schema-Section:not(.open) .Schema-Nav-Item {
+  display: none;
+}
+
+.Schema-Section .Schema-Section .Schema-Section-Header, .Schema-Nav-Item {
+  padding: 5px 10px 5px 30px;
+}
+
+.Schema-Section .Schema-Section .Schema-Section-Header {
+  padding-left: 30px;
+}
+
+.Schema-Section .Schema-Section .Schema-Nav-Item {
+  padding-left: 60px;
 }
 
 .Schema-Nav-Item:hover, .Schema-Section-Header:hover {
