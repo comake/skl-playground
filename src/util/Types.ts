@@ -3,6 +3,7 @@ import { SHACL } from './Vocabularies';
 export type SelectElementEvent = React.SyntheticEvent<HTMLSelectElement>;
 export type InputElementEvent = React.SyntheticEvent<HTMLInputElement>;
 export type TextAreaElementEvent = React.SyntheticEvent<HTMLTextAreaElement>;
+export type ClickEvent = React.MouseEvent<HTMLButtonElement>;
 
 export interface ReferenceNodeObject {
   '@id': string;

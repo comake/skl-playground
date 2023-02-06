@@ -31,10 +31,7 @@ function EditorGroup() {
       if (selectedSchema && selectedSchema in unsavedSchemas) {
         try {
           const newSchema = JSON.parse(unsavedSchemas[selectedSchema]);
-          setSchemas({
-            schemas: { ...schemas, [selectedSchema]: newSchema }, 
-            coreSchemas 
-          });
+          setSchemas({ ...schemas, [selectedSchema]: newSchema });
           const { [selectedSchema]: schema, ...newUnsavedSchemas } = unsavedSchemas;
           setUnsavedSchemas(newUnsavedSchemas);
         } catch (error: unknown) {

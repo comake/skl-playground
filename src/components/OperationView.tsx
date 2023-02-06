@@ -39,7 +39,18 @@ function OperationView() {
   const parameters = useMemo<ShaclProperty[]>((): ShaclProperty[] => {
     if (selectedVerbSchema) {
       const parametersObject = selectedVerbSchema[SKL.parameters] as NodeObject;
-      return ensureArray(parametersObject[SHACL.property]) as ShaclProperty[];
+      return (ensureArray(parametersObject[SHACL.property]) as ShaclProperty[])
+        .sort((aParam, bParam) => {
+          const aHasMinCount = SHACL.minCount in aParam;
+          const bHasMinCount = SHACL.minCount in bParam;
+          if (aHasMinCount && !bHasMinCount) {
+            return -1;
+          }
+          if (!aHasMinCount && bHasMinCount) {
+            return 1;
+          }
+          return 0;
+        });
     }
     return [];
   }, [selectedVerbSchema]);
@@ -77,12 +88,22 @@ function OperationView() {
             setOperationError(error.message);
           }
         } finally {
-          setLoadingResult(false)
+          setLoadingResult(false);
         }
       }
     }
     run();
   }, [parameterValues, selectedVerbSchema, setLoadingResult, setResult]);
+
+  useEffect(() => {
+    const selectedVerbInSchema = verbSelectSections[0].options.some((verbOption) => verbOption.value === selectedVerb);
+    if (!selectedVerbInSchema) {
+      setSelectedVerb(undefined);
+      setParameterValues({});
+      setOperationError(undefined);
+      setResult(undefined);
+    }
+  }, [selectedVerb, setResult, verbSelectSections])
   
   return (
     <div className='Operation-View'>

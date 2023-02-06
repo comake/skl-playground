@@ -1,15 +1,11 @@
 import type { Entity } from '@comake/skl-js-engine';
 import { createContext } from "react";
 
-interface SetSchemaArgs { 
-  schemas: Record<string, Entity>; 
-  coreSchemas: Record<string, Entity>;
-};
-
 interface SchemaContextType {
   schemas: Record<string, Entity>;
   coreSchemas: Record<string, Entity>,
-  setSchemas: (args: SetSchemaArgs) => void;
+  setCoreSchemas: (coreSchemas: Record<string, Entity>) => void;
+  setSchemas: (schemas: Record<string, Entity>) => void;
   selectedSchema?: string,
   setSelectedSchema: (id: string | undefined) => void;
   openSchemas: string[];
@@ -20,6 +16,7 @@ const SchemaContext = createContext<SchemaContextType>({
   schemas: {},
   coreSchemas: {},
   setSchemas: () => {},
+  setCoreSchemas: () => {},
   selectedSchema: undefined,
   setSelectedSchema: () => {},
   openSchemas: [],

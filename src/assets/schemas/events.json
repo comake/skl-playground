@@ -4,7 +4,7 @@
     "fnml": "http://semweb.mmlab.be/ns/fnml#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-    "label": "label",
+    "label": "rdfs:label",
     "schema": "https://schema.org/",
     "rdfs:subClassOf": { "@type": "@id" },
     "rdfs:range": { "@id": "rdfs:range", "@type": "@id" },
@@ -1130,7 +1130,7 @@
       "@type": ["owl:Class", "shacl:NodeShape"],
       "label": "Event",
       "rdfs:subClassOf": "https://standardknowledge.com/ontologies/core/Noun",
-      "skos:definition": "An event happening at a certain time and location, such as a concert, lecture, or festival.",
+      "description": "An event happening at a certain time and location, such as a concert, lecture, or festival.",
       "shacl:closed": false,
       "shacl:property": [
         {
@@ -1281,7 +1281,8 @@
             "shacl:maxCount": 1,
             "shacl:minCount": 1,
             "shacl:name": "account",
-            "shacl:path": "https://example.com/account"
+            "shacl:path": "https://example.com/account",
+            "shacl:class": "https://standardknowledge.com/ontologies/core/Account"
           }
         ]
       },
@@ -1330,24 +1331,28 @@
       "@id": "https://example.com/data/TicketmasterAccountSecurityCredentials",
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/TicketmasterAccount",
+      "label": "Ticketmaster Security Credentials",
       "apiKey": "ENV_TICKETMASTER_APIKEY"
     },
     {
       "@id": "https://example.com/data/StubhubAccountSecurityCredentials",
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/StubhubAccount",
+      "label": "Stubhub Security Credentials",
       "accessToken": "ENV_STUBHUB_ACCESS_TOKEN"
     },
     {
       "@id": "https://example.com/data/SeatgeekAccountSecurityCredentials",
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/SeatgeekAccount",
+      "label": "SeatGeek Security Credentials",
       "apiKey": "ENV_SEATGEEK_APIKEY"
     },
     {
       "@id": "https://example.com/data/TicketmasterOpenApiDescription",
       "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "integration": "https://example.com/integrations/Ticketmaster",
+      "label": "Ticketmaster OpenAPI Description",
       "openApiDescription": {
         "openapi": "3.0.0",
         "servers": [
@@ -4553,6 +4558,7 @@
       "@id": "https://example.com/data/StubhubOpenApiDescription",
       "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "integration": "https://example.com/integrations/Stubhub",
+      "label": "Stubhub OpenAPI Description",
       "openApiDescription": {
         "openapi": "3.0.0",
         "info": {
@@ -6145,6 +6151,7 @@
       "@id": "https://example.com/data/SeatgeekOpenApiDescription",
       "@type": "https://standardknowledge.com/ontologies/core/OpenApiDescription",
       "integration": "https://example.com/integrations/Seatgeek",
+      "label": "SeatGeek OpenAPI Description",
       "openApiDescription": {
         "openapi": "3.0.0",
         "info": {

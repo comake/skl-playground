@@ -1,7 +1,9 @@
 import { Entity } from '@comake/skl-js-engine';
 import { useContext, useMemo } from 'react';
+import ProjectContext from '../contexts/ProjectContext';
 import SchemaContext from '../contexts/SchemaContext';
 import { OWL, SKL } from '../util/Vocabularies';
+import ProjectDropdown from './ProjectDropdown';
 import SchemaSection, { SchemaSectionProps } from './SchemaSection';
 
 const SECTIONS = {
@@ -58,14 +60,17 @@ function Explorer() {
 
   return (
     <div className='Explorer'>
-      <SchemaSection
-        name={'Core Schemas'}
-        schemas={Object.values(coreSchemas)}
-      />
-      <SchemaSection
-        name={'Schemas'}
-        subSections={schemasBySection}
-      />
+      <ProjectDropdown />
+      <div className='Tree-View'>
+        <SchemaSection
+          name={'Core Schemas'}
+          schemas={Object.values(coreSchemas)}
+        />
+        <SchemaSection
+          name={'Schemas'}
+          subSections={schemasBySection}
+        />
+      </div>
     </div>
   )
 }

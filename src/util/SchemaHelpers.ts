@@ -1,11 +1,10 @@
 import { Entity } from '@comake/skl-js-engine';
 import type { NodeObject } from 'jsonld';
 import jsonld from 'jsonld';
-import files from '../assets/schemas/files.json';
-import events from '../assets/schemas/events.json';
 import core from '../assets/schemas/core.json';
 import { JsonLdArray } from 'jsonld/jsonld-spec';
 import { OWL } from './Vocabularies';
+import { Project } from '../PreloadedProjects';
 
 export const SCHEMA_SETS = {
   files: 'files',
@@ -14,6 +13,11 @@ export const SCHEMA_SETS = {
 
 export type SchemaSet = keyof typeof SCHEMA_SETS;
 
+export function keyOnId<T extends { id: string }>(arr: T[]) {
+  return arr.reduce((obj: Record<string, T>, item) => (
+    { ...obj, [item.id]: item }
+  ), {});
+}
 function keySchemasOnId(schemas: Entity[]): Record<string, Entity> {
   return schemas.reduce((obj, schema) => {
     return { ...obj, [schema['@id']]: schema }
@@ -103,18 +107,20 @@ export async function frameAndCombineSchemas(
   return await frameSchemas(expandedSchema, frameTypes);
 }
 
-export async function loadSchemaSet(
-  schemaSet: SchemaSet,
-): Promise<{
-  coreSchemas: Record<string, Entity>,
-  schemas: Record<string, Entity>,
-}> {
-  const rawSchemas = schemaSet === 'files' ? files : events;
+export async function loadCoreSchemas(): Promise<Record<string, Entity>> {
   const coreSchemas = await frameAndCombineSchemas(core);
-  const coreSchemaTypes = coreSchemas.map(schema => schema['@id']);
-  const schemas = await frameAndCombineSchemas(rawSchemas, coreSchemaTypes);
-  return {
-    schemas: keySchemasOnId(schemas),
-    coreSchemas: keySchemasOnId(coreSchemas),
-  }
+  return keySchemasOnId(coreSchemas);
+}
+
+export async function loadSchemasForProject(
+  project: Project,
+  coreSchemas: Record<string, Entity>
+): Promise<Record<string, Entity>> {
+  if (project.unframedSchemas) {
+    const rawSchemas = project.unframedSchemas;
+    const coreSchemaTypes = Object.values(coreSchemas).map(schema => schema['@id']);
+    const schemas = await frameAndCombineSchemas(rawSchemas, coreSchemaTypes);
+    return keySchemasOnId(schemas);
+  } 
+  return {};
 }

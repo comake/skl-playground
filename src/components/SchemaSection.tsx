@@ -30,7 +30,7 @@ function SchemaSection({ name, schemas, subSections }: SchemaSectionProps) {
         <div className='Schema-Section-Name'>{ name }</div>
       </div>
       { subSections && subSections.map((section) => (
-        <SchemaSection {...section} />
+        <SchemaSection key={section.name} {...section} />
       ))}
       { sortedSchemas.map((schema) => (
         <SchemaNavItem key={schema['@id']} schema={schema} />

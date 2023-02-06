@@ -2,13 +2,12 @@ import { ReactComponent as CloseIcon } from '../images/close.svg';
 import { RDFS } from '@comake/skl-js-engine';
 import { useCallback, useContext, useMemo } from 'react';
 import SchemaContext from '../contexts/SchemaContext';
+import { ClickEvent } from '../util/Types';
 
 export interface SchemaTabProps {
   schema: string;
   saved: boolean;
 }
-
-export type ClickEvent = React.MouseEvent<HTMLButtonElement>;
 
 function SchemaTab({ schema, saved }: SchemaTabProps) {
   const { schemas, coreSchemas, selectedSchema, setSelectedSchema, openSchemas, setOpenSchemas } = useContext(SchemaContext);

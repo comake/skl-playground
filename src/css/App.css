@@ -44,7 +44,8 @@ button {
   
   --primary-text-color: rgb(215, 218, 224);
   --secondary-text-color: #abb2bf;
-  --tertiary-text-color: rgba(215, 218, 224, 0.25);
+  --tertiary-text-color: rgba(215, 218, 224, 0.5);
+  --quaternary-text-color: rgba(215, 218, 224, 0.25);
 
   --header-background-color: rgb(33, 37, 43);
   --header-border-color: rgb(28, 30, 36);
@@ -59,7 +60,8 @@ button {
 
   --warning-background-color: rgba(255, 0, 0, 0.15);
 
-  --dropbox-background-color: rgb(53, 59, 69);
+  --dropdown-background-color: rgb(53, 59, 69);
+  --dropdown-border-color: rgb(54, 57, 65);
 
   --cta-button-color: #ff88fd;
 }
@@ -70,7 +72,8 @@ button {
 
   --primary-text-color: #24292f;
   --secondary-text-color: rgb(30, 30, 30);
-  --tertiary-text-color: rgba(87, 96, 106, 0.5);
+  --tertiary-text-color: rgba(61, 67, 74, 0.5);
+  --quaternary-text-color: rgba(87, 96, 106, 0.5);
 
   --header-background-color: rgb(246, 248, 250);
   --header-border-color: hsl(210, 18%, 84%);
@@ -85,7 +88,8 @@ button {
 
   --warning-background-color: rgba(255, 0, 0, 0.15);
 
-  --dropbox-background-color: rgb(255, 255, 255);
+  --dropdown-background-color: rgb(255, 255, 255);
+  --header-dropdown-color: hsl(210, 18%, 84%);
 
   --cta-button-color: #ff88fd;
 }
@@ -181,8 +185,44 @@ button {
 .Explorer {
   height:100%;
   background-color: var(--schema-explorer-background-color);
-  overflow: auto;
+  overflow: hidden;
   border-right: 1px solid var(--header-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.Project-Dropdown .Dropdown-Button {
+  text-align: left;
+  width: 100%;
+  height:36px;
+  padding: 10px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary-text-color);
+  border: none;
+  border-bottom: 1px solid var(--header-border-color);
+  background-color: transparent;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.Project-Dropdown .Project-Name {
+  flex: 1;
+}
+
+.Project-Dropdown .Down-Arrow-Icon {
+  fill: var(--icon-color);
+  width: 13px;
+}
+
+.Project-Dropdown .Dropdown-Button:hover {
+  background-color: var(--explorer-item-hover-color);
+}
+
+.Tree-View {
+  flex: 1;
+  overflow: auto;
 }
 
 .Schema-Section-Header, .Schema-Nav-Item  {
@@ -297,7 +337,7 @@ button {
 .Schema-Tab {
   z-index: 2;
   font-size: 13px;
-  color: var(--tertiary-text-color);
+  color: var(--quaternary-text-color);
   border-right: 1px solid var(--header-border-color);
   border-bottom: 1px solid var(--header-border-color);
   padding: 8px 3px 7px 10px;
@@ -324,7 +364,7 @@ button {
   outline: none;
   margin-left: 3px;
   background-color: transparent;
-  color: var(--tertiary-text-color);
+  color: var(--quaternary-text-color);
 }
 
 .Schema-Tab.unsaved .Close-Tab-Button:not(:hover) .Close-Icon {
@@ -401,7 +441,7 @@ input:not([type='checkbox']), select {
 }
 
 input:not([type='checkbox']), select, textarea {
-  background-color: var(--dropbox-background-color);
+  background-color: var(--dropdown-background-color);
 }
 
 input:not([type='checkbox']), 
@@ -547,4 +587,55 @@ select {
   border-bottom:3px solid transparent;
   border-right:3px solid transparent;
   border-radius:100%;
+}
+
+.Dropdown {
+  background-color: var(--main-background-color);
+  border: 1px solid var(--dropdown-border-color);
+  border-radius: 9px;
+  box-shadow: 0 10px 20px -1px rgba(0, 0, 0, 0.4);
+}
+
+.Project-Dropdown-Contents {
+  width: 350px;
+  box-sizing: border-box;
+  padding: 0 10px 10px 10px;
+}
+
+.Project-Dropdown-Header {
+  color: var(--tertiary-text-color);
+  font-size: 13px;
+  padding: 0 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.Project-Button {
+  border-radius: 9px;
+  padding: 10px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width:100%;
+  display: block;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.Project-Button:hover {
+  background-color: var(--button-hover-color);
+}
+
+.Project-Button .Project-Name {
+  color: var(--primary-text-color);
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.Project-Button .Project-Description {
+  color: var(--tertiary-text-color);
+  font-size: 13px;
+  font-weight: 400;
 }
