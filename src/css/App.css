@@ -59,11 +59,14 @@ button {
   --button-hover-color: #333842;
 
   --warning-background-color: rgba(255, 0, 0, 0.15);
+  --warning-text-color: #ff1818;
 
   --dropdown-background-color: rgb(53, 59, 69);
   --dropdown-border-color: rgb(54, 57, 65);
 
   --cta-button-color: #ff88fd;
+
+  --context-menu-border-color: rgba(153, 200, 255);
 }
 
 .App.light {
@@ -87,11 +90,14 @@ button {
   --button-hover-color: rgb(175 184 193 / 20%);
 
   --warning-background-color: rgba(255, 0, 0, 0.15);
+  --warning-text-color: #ff1818;
 
   --dropdown-background-color: rgb(255, 255, 255);
   --header-dropdown-color: hsl(210, 18%, 84%);
 
   --cta-button-color: #ff88fd;
+
+  --context-menu-border-color: rgba(0, 94, 204);
 }
 
 /* Component Specific Styles */
@@ -191,33 +197,39 @@ button {
   flex-direction: column;
 }
 
-.Project-Dropdown .Dropdown-Button {
-  text-align: left;
+.Project-Header {
   width: 100%;
   height:36px;
-  padding: 10px 10px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+.Project-Header .Project-Name {
+  flex: 1;
   font-size: 13px;
   font-weight: 500;
   color: var(--primary-text-color);
-  border: none;
-  border-bottom: 1px solid var(--header-border-color);
-  background-color: transparent;
+}
+
+.Project-Header-Button {
+  margin-left: 2px;
   outline: none;
-  display: flex;
-  align-items: center;
+  border: none;
+  padding: 0;
+  background-color: transparent;
 }
 
-.Project-Dropdown .Project-Name {
-  flex: 1;
-}
-
-.Project-Dropdown .Down-Arrow-Icon {
+.Project-Header-Button svg {
+  width: 14px;
   fill: var(--icon-color);
-  width: 13px;
 }
 
-.Project-Dropdown .Dropdown-Button:hover {
-  background-color: var(--explorer-item-hover-color);
+.Project-Dropdown .Dropdown-Button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
 }
 
 .Tree-View {
@@ -225,12 +237,13 @@ button {
   overflow: auto;
 }
 
-.Schema-Section-Header, .Schema-Nav-Item  {
+.Schema-Section-Header, .Schema-List-Item  {
   cursor: pointer;
   padding: 5px 10px;
+  position: relative;
 }
 
-.Schema-Section-Name, .Schema-Nav-Item {
+.Schema-Section-Name, .Schema-List-Item {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -238,11 +251,11 @@ button {
   color: var(--secondary-text-color);
 }
 
-.Schema-Section:not(.open) .Schema-Section, .Schema-Section:not(.open) .Schema-Nav-Item {
+.Schema-Section:not(.open) .Schema-Section, .Schema-Section:not(.open) .Schema-List-Item {
   display: none;
 }
 
-.Schema-Section .Schema-Section .Schema-Section-Header, .Schema-Nav-Item {
+.Schema-Section .Schema-Section .Schema-Section-Header, .Schema-List-Item {
   padding: 5px 10px 5px 30px;
 }
 
@@ -250,19 +263,29 @@ button {
   padding-left: 30px;
 }
 
-.Schema-Section .Schema-Section .Schema-Nav-Item {
+.Schema-Section .Schema-Section .Schema-List-Item {
   padding-left: 60px;
 }
 
-.Schema-Nav-Item:hover, .Schema-Section-Header:hover {
+.Schema-List-Item:hover, .Schema-Section-Header:hover {
   background-color: var(--explorer-item-hover-color);
 }
 
-.Schema-Nav-Item.Selected {
+.Schema-List-Item.Selected {
   background-color: var(--explorer-item-selected-color);
   color: var(--primary-text-color);
 }
 
+.Schema-List-Item.Context-Menu::after {
+  content: "";
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  bottom: 1px;
+  right: 1px;
+  outline: 1px solid var(--context-menu-border-color);
+  border-radius: 1px;
+}
 
 .Schema-Section-Arrow {
   margin-right: 7px;
@@ -304,7 +327,7 @@ button {
   padding: 3px 4px;
   border-radius: 4px;
   background-color: var(--warning-background-color);
-  color: #ff1818;
+  color: var(--warning-text-color);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -340,7 +363,7 @@ button {
   color: var(--quaternary-text-color);
   border-right: 1px solid var(--header-border-color);
   border-bottom: 1px solid var(--header-border-color);
-  padding: 8px 3px 7px 10px;
+  padding: 7px 3px 6px 10px;
   cursor: pointer;
   max-width: 250px;
   min-width: 100px;
@@ -355,16 +378,21 @@ button {
   overflow: hidden;
 }
 
-.Schema-Tab .Close-Tab-Button {
-  height: 20px;
-  width: 20px;
+.Schema-Tab .Close-Tab-Button, .Project-Header-Button {
+  height: 22px;
+  width: 22px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
   justify-content: center;
   border: none;
   outline: none;
-  margin-left: 3px;
   background-color: transparent;
   color: var(--quaternary-text-color);
+}
+
+.Schema-Tab .Close-Tab-Button {
+  margin-left: 3px;
 }
 
 .Schema-Tab.unsaved .Close-Tab-Button:not(:hover) .Close-Icon {
@@ -380,7 +408,7 @@ button {
   visibility: hidden;
 }
 
-.Schema-Tab .Close-Tab-Button:hover { 
+.Schema-Tab .Close-Tab-Button:hover, .Project-Header-Button:hover { 
   background-color: var(--button-hover-color);
 }
 
@@ -422,6 +450,10 @@ button {
 .Select-Wrapper select {
   -webkit-appearance: none;
   appearance: none;
+}
+
+input:focus-visible, select:focus-visible, .Operation-Parameter-Input .cm-editor.cm-focused {
+  outline: 2px solid var(--context-menu-border-color);
 }
 
 .Select-Wrapper::after {
@@ -495,6 +527,8 @@ select {
 .Parameter-Input-Wrapper {
   flex: 1;
   overflow: hidden;
+  padding: 2px;
+  margin: -2px;
 }
 
 .Parameter-Input-Wrapper .Operation-Parameter-Input, .Parameter-Input-Wrapper .Select-Wrapper {
@@ -543,7 +577,7 @@ select {
   padding: 3px 4px;
   border-radius: 4px;
   background-color: var(--warning-background-color);
-  color: #ff1818;
+  color: var(--warning-text-color);
 }
 
 .Result-View {
@@ -638,4 +672,28 @@ select {
   color: var(--tertiary-text-color);
   font-size: 13px;
   font-weight: 400;
+}
+
+.Context-Menu-Dropdown {
+  position: fixed;
+  padding: 5px 0;
+  min-width: 150px;
+  border-radius: 4px;
+}
+
+.Context-Menu-Item {
+  font-size: 13px;
+  color: var(--secondary-text-color);
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.Context-Menu-Item:hover {
+  background-color: var(--button-hover-color);
+  color: var(--primary-text-color);
+}
+
+.Red-Context-Menu-Item:hover {
+  background-color: var(--warning-background-color);
+  color: var(--warning-text-color);
 }

@@ -1,5 +1,5 @@
 import { Entity } from '@comake/skl-js-engine';
-import { useCallback, useContext, useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import SchemaContext from '../contexts/SchemaContext';
 import useDocumentEvent from '../hooks/useDocumentEvent';
 import CodeEditor from './CodeEditor';
@@ -24,20 +24,24 @@ function EditorGroup() {
     }
   }, [coreSchemas, schemas, selectedSchema]);
 
+  const saveSchema = useCallback(() => {
+    if (selectedSchema && selectedSchema in unsavedSchemas) {
+      try {
+        const newSchema = JSON.parse(unsavedSchemas[selectedSchema]);
+        setSchemas({ ...schemas, [selectedSchema]: newSchema });
+        const { [selectedSchema]: schema, ...newUnsavedSchemas } = unsavedSchemas;
+        setUnsavedSchemas(newUnsavedSchemas);
+      } catch (error: unknown) {
+        alert('This schema cannot be saved due to syntax error.')
+      }
+    }
+  }, [schemas, selectedSchema, setSchemas, unsavedSchemas])
+
   useDocumentEvent('keydown', true, (event: KeyboardEvent) => {
     if (event.metaKey && event.key === 's') {
       event.stopPropagation();
       event.preventDefault();
-      if (selectedSchema && selectedSchema in unsavedSchemas) {
-        try {
-          const newSchema = JSON.parse(unsavedSchemas[selectedSchema]);
-          setSchemas({ ...schemas, [selectedSchema]: newSchema });
-          const { [selectedSchema]: schema, ...newUnsavedSchemas } = unsavedSchemas;
-          setUnsavedSchemas(newUnsavedSchemas);
-        } catch (error: unknown) {
-          alert('This schema cannot be saved due to syntax error.')
-        }
-      }
+      saveSchema();
     }
   }, true);
 
@@ -50,6 +54,12 @@ function EditorGroup() {
 
   const updateUnsavedSchemaValue = useCallback((content: string) => {
     if (selectedSchema) {
+      setUnsavedSchemas((unsavedSchemas) => ({ ...unsavedSchemas, [selectedSchema!]: content }));
+    }
+  }, [selectedSchema]);
+
+  useEffect(() => {
+    if (selectedSchema && selectedSchema in unsavedSchemas) {
       let savedContent: Entity | undefined;
       if (selectedSchema && selectedSchema in schemas) {
         savedContent = schemas[selectedSchema];
@@ -59,22 +69,24 @@ function EditorGroup() {
       }
       if (savedContent) {
         const savedContentAsString = JSON.stringify(savedContent, null, 2);
-        if (savedContentAsString !== content) {
-          setUnsavedSchemas((unsavedSchemas) => ({ ...unsavedSchemas, [selectedSchema!]: content }));
-        } else {
+        if (savedContentAsString === unsavedSchemas[selectedSchema]) {
           const { [selectedSchema]: schema, ...newUnsavedSchemas } = unsavedSchemas;
           setUnsavedSchemas(newUnsavedSchemas);
         }
       }
     }
-  }, [coreSchemas, schemas, selectedSchema, unsavedSchemas]);
+  }, [unsavedSchemas, selectedSchema, schemas, coreSchemas]);
 
   return (
     <div className='Editor-Group'>
       { displayedOpenSchemas.length > 0 && (
         <div className='Editor-Group-Tabs'>
           { displayedOpenSchemas.map((schema) => (
-            <SchemaTab key={schema} schema={schema} saved={!(schema in unsavedSchemas)} />
+            <SchemaTab 
+              key={schema} 
+              schema={schema} 
+              saved={!(schema in unsavedSchemas)}
+            />
           ))}
           <div className='Flex-Spacer'></div>
         </div>

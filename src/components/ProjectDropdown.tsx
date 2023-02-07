@@ -1,24 +1,23 @@
 import { useContext } from 'react';
 import ProjectContext from '../contexts/ProjectContext';
 import Dropdown from './Dropdown';
-import { ReactComponent as ArrowIcon } from '../images/down-arrow.svg';
+import { ReactComponent as EllipsisIcon } from '../images/ellipsis.svg';
 import ProjectButton from './ProjectButton';
 
 function ProjectDropdown() {
-  const { selectedProject, projects, setSelectedProjectId } = useContext(ProjectContext);
+  const { projects, setSelectedProjectId } = useContext(ProjectContext);
 
   const buttonContents = <>
-    <div className='Project-Name'>{selectedProject.name}</div>
-    <ArrowIcon className='Down-Arrow-Icon'/>
+    <div className='Project-Header-Button'><EllipsisIcon className='Ellipsis-Icon'/></div>
   </>
   
   return (
     <Dropdown
-    additionalClasses='Project-Dropdown'
+      additionalClasses='Project-Dropdown'
       buttonContents={buttonContents}
     >
       <div className='Project-Dropdown-Contents'>
-        <div className='Project-Dropdown-Header'>Example Projects</div>
+        <div className='Project-Dropdown-Header'>Switch Projects</div>
         { projects.map((project) => (
           <ProjectButton 
             key={project.name} 

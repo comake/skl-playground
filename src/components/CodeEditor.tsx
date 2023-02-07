@@ -22,12 +22,6 @@ function CodeEditor({ code, onChange, locked, classes, hideLineNumbers, alwaysSh
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const updateListener = EditorView.updateListener.of((v) => {
-        if (v.docChanged && onChange) {
-          onChange(editorRef.current!.state.doc.toString());
-        }
-      });
-
     if (containerRef.current && !editorRef.current) {
       editorRef.current = new EditorView({
         state: EditorState.create({
@@ -38,7 +32,11 @@ function CodeEditor({ code, onChange, locked, classes, hideLineNumbers, alwaysSh
             json(),
             linter(jsonParseLinter()),
             lintGutter(),
-            updateListener,
+            EditorView.updateListener.of((v) => {
+              if (v.docChanged && onChange) {
+                onChange(editorRef.current!.state.doc.toString());
+              }
+            }),
             EditorView.theme({
               "&": { height: "100%" },
               '&.cm-editor.cm-focused': { outline: 'none' },
@@ -72,7 +70,7 @@ function CodeEditor({ code, onChange, locked, classes, hideLineNumbers, alwaysSh
       };
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef, editorRef, theme, locked]);
+  }, [containerRef, editorRef, theme, locked, hideLineNumbers, alwaysShowFolds]);
 
   return <div className={classes} ref={containerRef} />;
 }

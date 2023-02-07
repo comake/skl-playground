@@ -1,10 +1,11 @@
-import { Entity } from '@comake/skl-js-engine';
 import { useContext, useMemo } from 'react';
 import ProjectContext from '../contexts/ProjectContext';
 import SchemaContext from '../contexts/SchemaContext';
 import { OWL, SKL } from '../util/Vocabularies';
 import ProjectDropdown from './ProjectDropdown';
 import SchemaSection, { SchemaSectionProps } from './SchemaSection';
+
+import { ReactComponent as NewFileIcon } from '../images/plus.svg';
 
 const SECTIONS = {
   Nouns: 'Nouns',
@@ -30,7 +31,8 @@ const TYPE_TO_SECTION = {
 };
 
 function Explorer() {
-  const { schemas, coreSchemas } = useContext(SchemaContext);
+  const { schemas, coreSchemas, addNewSchema } = useContext(SchemaContext);
+  const { selectedProject } = useContext(ProjectContext);
 
   const schemasBySection = useMemo(() => {
     const sectionsByName = Object.values(schemas).reduce((obj: Record<string, SchemaSectionProps>, schema) => {
@@ -56,13 +58,23 @@ function Explorer() {
         return obj;
       }, {});
     return Object.values(sectionsByName);
-  }, [schemas])
+  }, [schemas]);
 
   return (
     <div className='Explorer'>
-      <ProjectDropdown />
+      <div className='Project-Header Centered'>
+        <div className='Project-Name'>{selectedProject.name}</div>
+        <button 
+          onClick={addNewSchema}
+          className='Project-Header-Button' 
+          title='New Schema'>
+            <NewFileIcon />
+        </button>
+        <ProjectDropdown />
+      </div>
       <div className='Tree-View'>
         <SchemaSection
+          isCore
           name={'Core Schemas'}
           schemas={Object.values(coreSchemas)}
         />

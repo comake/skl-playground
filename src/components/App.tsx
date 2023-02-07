@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { v4 as uuid } from 'uuid';
 import '../css/App.css';
 import Header from './Header';
 import AppBody from './AppBody';
@@ -9,6 +10,7 @@ import { keyOnId, loadCoreSchemas, loadSchemasForProject } from '../util/SchemaH
 import { Entity } from '@comake/skl-js-engine';
 import { preloadedProjects, Project } from '../PreloadedProjects';
 import ProjectContext from '../contexts/ProjectContext';
+import { RDFS } from '../util/Vocabularies';
 
 function App() { 
   const [projects, setProjects] = useState<Record<string, Project>>(keyOnId(preloadedProjects));
@@ -22,6 +24,21 @@ function App() {
   const [result, setResult] = useState<string>();
   const [loadingResult, setLoadingResult] = useState(false);
 
+  const addNewSchema = useCallback(() => {
+    const uid = uuid();
+    const id = `https://example.com/data/${uid}`;
+    setSchemas((schemas) => ({
+      ...schemas,
+      [id]: {
+        '@id': id,
+        '@type': 'https://standardknowledge.com/ontologies/core/Noun',
+        [RDFS.label]: 'Untitled'
+      }
+    }));
+    setOpenSchemas((openSchemas) => [...openSchemas, id]);
+    setSelectedSchema(id);
+  }, []);
+
   const themeContext = useMemo(
     () => ({ theme, setTheme }), 
     [ theme, setTheme ],
@@ -33,8 +50,20 @@ function App() {
   );
 
   const schemaContext = useMemo(
-    () => ({ schemas, coreSchemas, setSchemas, setCoreSchemas, selectedSchema, setSelectedSchema, openSchemas, setOpenSchemas }), 
-    [ schemas, coreSchemas, setSchemas, setCoreSchemas, selectedSchema, setSelectedSchema, openSchemas, setOpenSchemas ],
+    () => ({ 
+      schemas,
+      coreSchemas,
+      setSchemas,
+      setCoreSchemas,
+      selectedSchema,
+      setSelectedSchema,
+      openSchemas,
+      setOpenSchemas,
+      addNewSchema,
+    }), 
+    [ schemas, coreSchemas, setSchemas, setCoreSchemas, selectedSchema, 
+      setSelectedSchema, openSchemas, setOpenSchemas, addNewSchema
+    ],
   );
 
   const projectContext = useMemo(

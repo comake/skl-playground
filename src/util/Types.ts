@@ -25,3 +25,8 @@ export type ShaclProperty = {
   [SHACL.datatype]?: ReferenceNodeObject;
   [SHACL.nodeKind]?: ReferenceNodeObject;
 }
+
+export interface ClickLocation {
+  x: number;
+  y: number;
+}

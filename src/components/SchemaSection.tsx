@@ -1,14 +1,15 @@
 import { RDFS, Entity } from '@comake/skl-js-engine';
 import React from "react";
-import SchemaNavItem from './SchemaNavItem';
+import SchemaListItem from './SchemaListItem';
 
 export type SchemaSectionProps = {
   name: string;
   subSections?: SchemaSectionProps[];
   schemas?: Entity[];
+  isCore?: boolean;
 }
 
-function SchemaSection({ name, schemas, subSections }: SchemaSectionProps) {
+function SchemaSection({ name, schemas, subSections, isCore }: SchemaSectionProps) {
   const [open, setOpen] = React.useState(false);
   const toggleOpen = React.useCallback(() => setOpen(!open), [open]);
 
@@ -30,10 +31,10 @@ function SchemaSection({ name, schemas, subSections }: SchemaSectionProps) {
         <div className='Schema-Section-Name'>{ name }</div>
       </div>
       { subSections && subSections.map((section) => (
-        <SchemaSection key={section.name} {...section} />
+        <SchemaSection key={section.name} {...section} isCore={isCore} />
       ))}
       { sortedSchemas.map((schema) => (
-        <SchemaNavItem key={schema['@id']} schema={schema} />
+        <SchemaListItem editingDisabled={isCore} key={schema['@id']} schema={schema} />
       ))}
     </div>
   );

@@ -10,6 +10,7 @@ interface SchemaContextType {
   setSelectedSchema: (id: string | undefined) => void;
   openSchemas: string[];
   setOpenSchemas: (openSchemas: string[]) => void;
+  addNewSchema: () => void;
 }
 
 const SchemaContext = createContext<SchemaContextType>({
@@ -21,6 +22,7 @@ const SchemaContext = createContext<SchemaContextType>({
   setSelectedSchema: () => {},
   openSchemas: [],
   setOpenSchemas: () => {},
+  addNewSchema: () => {},
 });
 
 export default SchemaContext;

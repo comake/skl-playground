@@ -37,7 +37,7 @@ function OperationView() {
   }, [selectedVerb, schemas]);
 
   const parameters = useMemo<ShaclProperty[]>((): ShaclProperty[] => {
-    if (selectedVerbSchema) {
+    if (selectedVerbSchema && SKL.parameters in selectedVerbSchema) {
       const parametersObject = selectedVerbSchema[SKL.parameters] as NodeObject;
       return (ensureArray(parametersObject[SHACL.property]) as ShaclProperty[])
         .sort((aParam, bParam) => {
