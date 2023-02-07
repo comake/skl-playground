@@ -39,8 +39,9 @@ button {
 .App.dark {
   color-scheme: dark;
   
-  --header-icon-color: white;
-  --icon-color: rgb(84, 88, 93);
+  --header-icon-color: rgb(227, 230, 234);
+  --secondary-icon-color: rgb(84, 88, 93);
+  --primary-icon-color: rgb(142, 146, 150);
   
   --primary-text-color: rgb(215, 218, 224);
   --secondary-text-color: #abb2bf;
@@ -71,7 +72,8 @@ button {
 
 .App.light {
   --header-icon-color: #24292f;
-  --icon-color: rgb(177, 184, 190);
+  --secondary-icon-color: rgb(177, 184, 190);
+  --primary-icon-color: rgb(108, 113, 118);
 
   --primary-text-color: #24292f;
   --secondary-text-color: rgb(30, 30, 30);
@@ -250,7 +252,7 @@ button {
 
 .Project-Header-Button svg {
   width: 14px;
-  fill: var(--icon-color);
+  fill: var(--primary-icon-color);
 }
 
 .Project-Dropdown .Dropdown-Button {
@@ -446,7 +448,7 @@ button {
   width: 10px;
   min-height: 10px;
   min-width: 10px;
-  fill: var(--icon-color);
+  fill: var(--secondary-icon-color);
 }
 
 .Schema-Tab:hover {
@@ -597,7 +599,7 @@ select {
 }
 
 .Run-Operation-Button:disabled {
-  background-color: var(--icon-color);
+  background-color: var(--secondary-icon-color);
   pointer-events: none;
 }
 
@@ -645,8 +647,8 @@ select {
   top:-3px;
   height:100%;
   width:100%;
-  border-top:3px solid var(--icon-color);
-  border-left:3px solid var(--icon-color);
+  border-top:3px solid var(--secondary-icon-color);
+  border-left:3px solid var(--secondary-icon-color);
   border-bottom:3px solid transparent;
   border-right:3px solid transparent;
   border-radius:100%;
