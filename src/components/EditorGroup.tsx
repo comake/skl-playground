@@ -4,6 +4,7 @@ import SchemaContext from '../contexts/SchemaContext';
 import useDocumentEvent from '../hooks/useDocumentEvent';
 import CodeEditor from './CodeEditor';
 import SchemaTab from './SchemaTab';
+import { ReactComponent as SklIcon } from '../images/standard-knowledge-language.svg';
 
 function EditorGroup() {
   const { schemas, coreSchemas, selectedSchema, openSchemas, setSchemas } = useContext(SchemaContext);
@@ -108,6 +109,11 @@ function EditorGroup() {
             onChange={updateUnsavedSchemaValue} 
           />
         }
+        { !selectedSchema && (
+          <div className='Editor-Background'>
+            <SklIcon />
+          </div>
+        )}
       </div>
     </div>
   )
