@@ -1332,21 +1332,21 @@
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/TicketmasterAccount",
       "label": "Ticketmaster Security Credentials",
-      "apiKey": "ENV_TICKETMASTER_APIKEY"
+      "apiKey": "TICKETMASTER_APIKEY"
     },
     {
       "@id": "https://example.com/data/StubhubAccountSecurityCredentials",
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/StubhubAccount",
       "label": "Stubhub Security Credentials",
-      "accessToken": "ENV_STUBHUB_ACCESS_TOKEN"
+      "accessToken": "STUBHUB_ACCESS_TOKEN"
     },
     {
       "@id": "https://example.com/data/SeatgeekAccountSecurityCredentials",
       "@type": "https://standardknowledge.com/ontologies/core/SecurityCredentials",
       "account": "https://example.com/data/SeatgeekAccount",
       "label": "SeatGeek Security Credentials",
-      "apiKey": "ENV_SEATGEEK_APIKEY"
+      "apiKey": "SEATGEEK_APIKEY"
     },
     {
       "@id": "https://example.com/data/TicketmasterOpenApiDescription",

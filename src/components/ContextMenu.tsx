@@ -1,4 +1,4 @@
-import React, { ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import useOverhangAdjustment from '../hooks/useOverhangAdjustment';
 import { ClickLocation } from '../util/Types';
 import DropdownPortal from './DropdownPortal';

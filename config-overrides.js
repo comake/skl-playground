@@ -10,6 +10,7 @@ module.exports = function override(config) {
     "http": require.resolve("stream-http"),
     "https": require.resolve("https-browserify"),
     "crypto": require.resolve("crypto-browserify"),
+    "buffer": require.resolve("buffer/"),
   })
   config.resolve.fallback = fallback;
 

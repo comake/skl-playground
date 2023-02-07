@@ -1,6 +1,5 @@
 import { useCallback } from 'react';
 import { Project } from '../PreloadedProjects';
-import { ClickEvent } from '../util/Types';
 
 export interface ProjectButtonProps {
   project: Project;

@@ -15,8 +15,8 @@ export interface Project {
 export const preloadedProjects: Project[] = [
   {
     id: 'filesExample',
-    name: 'Share Files',
-    description: 'Integrates with Google Drive, Dropbox & Box',
+    name: 'Share',
+    description: 'Integrates with Google Drive, Dropbox, Box, & Asana',
     schemas: {},
     loaded: false,
     unframedSchemas: files as NodeObject,
