@@ -6,7 +6,7 @@
     "@codemirror/lang-json": "^6.0.1",
     "@codemirror/lint": "^6.1.0",
     "@codemirror/theme-one-dark": "^6.1.0",
-    "@comake/skl-js-engine": "^0.1.0",
+    "@comake/skl-js-engine": "^0.1.1",
     "@uiw/codemirror-theme-github": "^4.19.7",
     "codemirror": "^6.0.1",
     "jsonld": "^6.0.0",
