@@ -1,28 +1,28 @@
 {
   "files": {
-    "main.css": "/skl/static/css/main.5af8a320.css",
-    "main.js": "/skl/static/js/main.f2ddb6f6.js",
-    "static/js/787.3caf5254.chunk.js": "/skl/static/js/787.3caf5254.chunk.js",
-    "static/media/slimdom.umd.cjs": "/skl/static/media/slimdom.umd.3691741cf6a6b295039f.cjs",
-    "images/standard-knowledge-language.svg": "/skl/images/d1ffc1130aeab21343dc6327a774dc22-standard-knowledge-language.svg",
-    "images/moon.svg": "/skl/images/f1f4a7642e238795795ea032aa45ed2d-moon.svg",
-    "images/sun.svg": "/skl/images/037d54ec7184fb613433e1692af6459e-sun.svg",
-    "index.html": "/skl/index.html",
-    "images/plus.svg": "/skl/images/6620ce0afdc71cfa17c17f6cd83886f1-plus.svg",
-    "images/close.svg": "/skl/images/543a5f4444eb52b1bd7c9ec434ffb269-close.svg",
-    "images/ellipsis.svg": "/skl/images/9913d32635b038f3f2faa7b7db1f0596-ellipsis.svg",
-    "static/media/standard-knowledge-language.svg": "/skl/static/media/standard-knowledge-language.8b5f62ef3ae8f142adaa47b92935872c.svg",
-    "static/media/ellipsis.svg": "/skl/static/media/ellipsis.77a0fbfbe1e6f5bcaab37020928d4802.svg",
-    "static/media/close.svg": "/skl/static/media/close.34d63797fe8adfd3e7f8752180478b5e.svg",
-    "static/media/moon.svg": "/skl/static/media/moon.ecbe0137cf0ad3e65491d7d4fce63fb2.svg",
-    "static/media/plus.svg": "/skl/static/media/plus.d33b13d92165a7f7757d21c860950ff0.svg",
-    "static/media/sun.svg": "/skl/static/media/sun.85035c888a910419ca5143d3bb2e84d4.svg",
-    "main.5af8a320.css.map": "/skl/static/css/main.5af8a320.css.map",
-    "main.f2ddb6f6.js.map": "/skl/static/js/main.f2ddb6f6.js.map",
-    "787.3caf5254.chunk.js.map": "/skl/static/js/787.3caf5254.chunk.js.map"
+    "main.css": "/static/css/main.5af8a320.css",
+    "main.js": "/static/js/main.4e394c10.js",
+    "static/js/787.3caf5254.chunk.js": "/static/js/787.3caf5254.chunk.js",
+    "static/media/slimdom.umd.cjs": "/static/media/slimdom.umd.3691741cf6a6b295039f.cjs",
+    "images/standard-knowledge-language.svg": "/images/d1ffc1130aeab21343dc6327a774dc22-standard-knowledge-language.svg",
+    "images/moon.svg": "/images/f1f4a7642e238795795ea032aa45ed2d-moon.svg",
+    "images/sun.svg": "/images/037d54ec7184fb613433e1692af6459e-sun.svg",
+    "index.html": "/index.html",
+    "images/plus.svg": "/images/6620ce0afdc71cfa17c17f6cd83886f1-plus.svg",
+    "images/close.svg": "/images/543a5f4444eb52b1bd7c9ec434ffb269-close.svg",
+    "images/ellipsis.svg": "/images/9913d32635b038f3f2faa7b7db1f0596-ellipsis.svg",
+    "static/media/standard-knowledge-language.svg": "/static/media/standard-knowledge-language.8b5f62ef3ae8f142adaa47b92935872c.svg",
+    "static/media/ellipsis.svg": "/static/media/ellipsis.77a0fbfbe1e6f5bcaab37020928d4802.svg",
+    "static/media/close.svg": "/static/media/close.34d63797fe8adfd3e7f8752180478b5e.svg",
+    "static/media/moon.svg": "/static/media/moon.ecbe0137cf0ad3e65491d7d4fce63fb2.svg",
+    "static/media/plus.svg": "/static/media/plus.d33b13d92165a7f7757d21c860950ff0.svg",
+    "static/media/sun.svg": "/static/media/sun.85035c888a910419ca5143d3bb2e84d4.svg",
+    "main.5af8a320.css.map": "/static/css/main.5af8a320.css.map",
+    "main.4e394c10.js.map": "/static/js/main.4e394c10.js.map",
+    "787.3caf5254.chunk.js.map": "/static/js/787.3caf5254.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5af8a320.css",
-    "static/js/main.f2ddb6f6.js"
+    "static/js/main.4e394c10.js"
   ]
 }
