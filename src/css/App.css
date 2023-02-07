@@ -150,23 +150,49 @@ button {
   position: relative;
 }
 
-.Split-View-Container > .Split-View-View {
-  position: absolute;
-}
-
-.Split-View-Container:not(.vertical) > .Split-View-View {
-  height: 100%;
-  top: 0;
-}
-
-.Split-View-Container.vertical > .Split-View-View {
-  width: 100%;
-  left: 0;
-}
-
 .Split-View-View .Split-View-Container {
   height: 100%;
   width: 100%;
+}
+
+.Split-View-View .Drag-Handle {
+  z-index: 3;
+}
+
+.Split-View-View::after {
+  z-index: 2;
+  content: '';
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.Split-View-View .Drag-Handle, .Split-View-View::after {
+  position: absolute;
+  background-color: transparent;
+}
+
+.Split-View-View.drag-handle-long-hover::after, .Split-View-View.dragging::after {
+  background-color: var(--context-menu-border-color);
+}
+
+.Split-View-Container.vertical > .Split-View-View > .Drag-Handle, 
+.Split-View-Container.vertical > .Split-View-View.drag-handle-long-hover::after, 
+.Split-View-Container.vertical > .Split-View-View.dragging::after {
+  width: 100%;
+  bottom: -3px;
+  height: 6px;
+  left: 0;
+  cursor: row-resize;
+}
+
+.Split-View-Container:not(.vertical) > .Split-View-View > .Drag-Handle,
+.Split-View-Container:not(.vertical) > .Split-View-View.drag-handle-long-hover::after, 
+.Split-View-Container:not(.vertical) > .Split-View-View.dragging::after {
+  height: 100%;
+  right: -3px;
+  width: 6px;
+  top: 0;
+  cursor: col-resize;
 }
 
 .Operation-View {
@@ -209,6 +235,9 @@ button {
   font-size: 13px;
   font-weight: 500;
   color: var(--primary-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .Project-Header-Button {

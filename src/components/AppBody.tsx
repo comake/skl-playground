@@ -1,52 +1,47 @@
-import { useEffect, useMemo, useState } from 'react';
+import { ReactNode, useMemo } from 'react';
 import EditorGroup from './EditorGroup';
 import Explorer from './Explorer';
-import SplitViewView from './SplitViewView';
-import useWindowSize from '../hooks/useWindowSize'
 import SplitViewContainer from './SplitViewContainer';
 import OperationView from './OperationView';
 import ResultView from './ResultView';
+import { FixedLengthArray } from '../util/Types';
 
 const baseExplorerWidth = 250;
-const baseOperationViewHeight = 300;
+const baseOperationViewHeight = 400;
 
 function AppBody() {
-  const { width: windowWidth } = useWindowSize(true, 200);
-  const [prevWindowWidth, setPrevWindowWidth] = useState(windowWidth);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const defaultEditorAndResultsWidth = useMemo(() => (windowWidth - baseExplorerWidth) / 2, []);
-  const [widths, setWidths] = useState([baseExplorerWidth, defaultEditorAndResultsWidth, defaultEditorAndResultsWidth]);
+  const defaultBodyWidths = useMemo(() => 
+    [baseExplorerWidth, undefined, undefined] as FixedLengthArray<number | undefined, 3>, 
+    [],
+  );
+  const defaultEditorAndResultsHeights = useMemo(() => 
+    [baseOperationViewHeight, undefined] as FixedLengthArray<number | undefined, 2>, 
+    [],
+  );
 
-  useEffect(() => {
-    if (windowWidth !== prevWindowWidth) {
-      setPrevWindowWidth(windowWidth);
-      const space = windowWidth - widths[0];
-      const ratio = widths[2] / widths[1];
-      const newEditorWidth = space / (1 + ratio);
-      const newResultsWidth = space - newEditorWidth;
-      setWidths([ widths[0], newEditorWidth, newResultsWidth]);
-    }
-  }, [windowWidth, widths, prevWindowWidth]);
+  const verbAndResultsSplitContent = useMemo(() => ([
+    <OperationView />,
+    <ResultView />
+  ] as FixedLengthArray<ReactNode, 2>), []);
+
+  const content = useMemo(() => ([
+    <Explorer />,
+    <EditorGroup />,
+    <SplitViewContainer
+      defaultViewDimensions={defaultEditorAndResultsHeights}
+      viewContent={verbAndResultsSplitContent}
+      additionalClasses={['Flex-Spacer']}
+      vertical
+    />
+  ] as FixedLengthArray<ReactNode, 3>), [defaultEditorAndResultsHeights, verbAndResultsSplitContent]);
   
   return (
-    <SplitViewContainer additionalClasses={['Body', 'Flex-Spacer']}>
-      <SplitViewView left={0} width={widths[0]}>
-        <Explorer />
-      </SplitViewView>
-      <SplitViewView left={widths[0]} width={widths[1]}>
-        <EditorGroup />
-      </SplitViewView>
-      <SplitViewView left={widths[0] + widths[1]} width={widths[2]}>
-        <SplitViewContainer additionalClasses={['Flex-Spacer']} vertical>
-          <SplitViewView top={0} height={baseOperationViewHeight}>
-            <OperationView />
-          </SplitViewView>
-          <SplitViewView top={baseOperationViewHeight} bottom={0}>
-            <ResultView />
-          </SplitViewView>
-        </SplitViewContainer>
-      </SplitViewView>
-    </SplitViewContainer>
+    <SplitViewContainer
+      defaultViewDimensions={defaultBodyWidths}
+      viewContent={content}
+      additionalClasses={['Body', 'Flex-Spacer']}
+    />
   )
 }
 
