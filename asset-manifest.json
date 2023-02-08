@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.e59f77ee.css",
-    "main.js": "/static/js/main.55e0f6ca.js",
+    "main.js": "/static/js/main.5c7193d4.js",
     "static/js/787.3caf5254.chunk.js": "/static/js/787.3caf5254.chunk.js",
     "static/media/slimdom.umd.cjs": "/static/media/slimdom.umd.3691741cf6a6b295039f.cjs",
     "images/standard-knowledge-language.svg": "/images/d1ffc1130aeab21343dc6327a774dc22-standard-knowledge-language.svg",
@@ -18,11 +18,11 @@
     "static/media/plus.svg": "/static/media/plus.21df46c06a37d80c767972494eea901c.svg",
     "static/media/sun.svg": "/static/media/sun.85035c888a910419ca5143d3bb2e84d4.svg",
     "main.e59f77ee.css.map": "/static/css/main.e59f77ee.css.map",
-    "main.55e0f6ca.js.map": "/static/js/main.55e0f6ca.js.map",
+    "main.5c7193d4.js.map": "/static/js/main.5c7193d4.js.map",
     "787.3caf5254.chunk.js.map": "/static/js/787.3caf5254.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e59f77ee.css",
-    "static/js/main.55e0f6ca.js"
+    "static/js/main.5c7193d4.js"
   ]
 }
