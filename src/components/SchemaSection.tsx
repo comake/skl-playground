@@ -1,15 +1,9 @@
 import { RDFS, Entity } from '@comake/skl-js-engine';
 import React from "react";
 import SchemaListItem from './SchemaListItem';
+import { SchemaSection as SchemaSectionType } from '../util/Types';
 
-export type SchemaSectionProps = {
-  name: string;
-  subSections?: SchemaSectionProps[];
-  schemas?: Entity[];
-  isCore?: boolean;
-}
-
-function SchemaSection({ name, schemas, subSections, isCore }: SchemaSectionProps) {
+function SchemaSection({ name, schemas, subSections, isCore }: SchemaSectionType) {
   const [open, setOpen] = React.useState(false);
   const toggleOpen = React.useCallback(() => setOpen(!open), [open]);
 

@@ -1,3 +1,4 @@
+import { Entity } from '@comake/skl-js-engine';
 import { SHACL } from './Vocabularies';
 
 export type SelectElementEvent = React.SyntheticEvent<HTMLSelectElement>;
@@ -42,3 +43,10 @@ export type FixedLengthArray<T, L extends number, TObj = [T, ...Array<T>]> =
   }
 
 export type OrArray<T> = T | T[];
+
+export type SchemaSection = {
+  name: string;
+  subSections?: SchemaSection[];
+  schemas?: Entity[];
+  isCore?: boolean;
+}

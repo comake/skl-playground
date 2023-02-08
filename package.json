@@ -8,6 +8,7 @@
     "@codemirror/theme-one-dark": "^6.1.0",
     "@comake/skl-js-engine": "^0.1.1",
     "@uiw/codemirror-theme-github": "^4.19.7",
+    "client-zip": "^2.3.0",
     "codemirror": "^6.0.1",
     "jsonld": "^6.0.0",
     "react": "^18.2.0",

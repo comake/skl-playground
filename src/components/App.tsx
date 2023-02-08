@@ -13,6 +13,7 @@ import ProjectContext from '../contexts/ProjectContext';
 import { RDFS } from '../util/Vocabularies';
 import NewProjectModal from './NewProjectModal';
 import useDocumentEvent from '../hooks/useDocumentEvent';
+import SchemaExporter from '../util/SchemaExporter';
 
 function App() { 
   const [projects, setProjects] = useState<Record<string, Project>>(keyOnId(preloadedProjects));
@@ -28,6 +29,7 @@ function App() {
   const [creatingNewProject, setCreatingNewProject] = useState(false);
   const createNewProject = useCallback(() => setCreatingNewProject(true), []);
   const closeNewProjectModal = useCallback(() => setCreatingNewProject(false), []);
+  const selectedProject = useMemo(() => projects[selectedProjectId], [projects, selectedProjectId]);
 
   const insertProject = useCallback((project: Project) => {
     setProjects((prevProjects) => ({ ...prevProjects, [project.id]: project }));
@@ -47,6 +49,11 @@ function App() {
     setOpenSchemas((openSchemas) => [...openSchemas, id]);
     setSelectedSchema(id);
   }, []);
+
+  const exportSchemas = useCallback(() => {
+    const exporter = new SchemaExporter(selectedProject.name, schemas, coreSchemas);
+    exporter.exportSchemas();
+  }, [schemas, selectedProject, coreSchemas]);
 
   const themeContext = useMemo(
     () => ({ theme, setTheme }), 
@@ -69,21 +76,22 @@ function App() {
       openSchemas,
       setOpenSchemas,
       addNewSchema,
+      exportSchemas,
     }), 
     [ schemas, coreSchemas, setSchemas, setCoreSchemas, selectedSchema, 
-      setSelectedSchema, openSchemas, setOpenSchemas, addNewSchema
+      setSelectedSchema, openSchemas, setOpenSchemas, addNewSchema, exportSchemas,
     ],
   );
 
   const projectContext = useMemo(
     () => ({ 
-      selectedProject: projects[selectedProjectId],
+      selectedProject,
       setSelectedProjectId,
       projects: Object.values(projects),
       createNewProject,
       insertProject
      }), 
-    [setSelectedProjectId, projects, selectedProjectId, createNewProject, insertProject]
+    [selectedProject, projects, createNewProject, insertProject]
   );
 
   const onKeyDown = useCallback((event: KeyboardEvent) => {

@@ -1,15 +1,19 @@
-import { useContext } from 'react';
+import { useCallback, useContext } from 'react';
 import ProjectContext from '../contexts/ProjectContext';
 import Dropdown from './Dropdown';
 import { ReactComponent as EllipsisIcon } from '../images/ellipsis.svg';
 import ProjectButton from './ProjectButton';
+import SchemaContext from '../contexts/SchemaContext';
 
 function ProjectDropdown() {
+  const { exportSchemas } = useContext(SchemaContext);
   const { projects, setSelectedProjectId, createNewProject } = useContext(ProjectContext);
 
-  const buttonContents = <>
-    <div className='Project-Header-Button'><EllipsisIcon className='Ellipsis-Icon'/></div>
-  </>
+  const buttonContents = (
+    <div className='Project-Header-Button'>
+      <EllipsisIcon className='Ellipsis-Icon'/>
+    </div>
+  );
   
   return (
     <Dropdown
@@ -30,6 +34,9 @@ function ProjectDropdown() {
         <div className='Dropdown-Line'></div>
         <button className='Dropdown-Option' onClick={createNewProject}>
           Create a new Project
+        </button>
+        <button className='Dropdown-Option' onClick={exportSchemas}>
+          Export Schemas
         </button>
         <div className='Dropdown-Line'></div>
         <a 
