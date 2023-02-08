@@ -1,7 +1,7 @@
 {
   "name": "@comake/skl-playground",
   "version": "0.0.0",
-  "homepage": "https://playground.standardknowledge.com/",
+  "homepage": "https://play.standardknowledge.com/",
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
     "@codemirror/lint": "^6.1.0",
