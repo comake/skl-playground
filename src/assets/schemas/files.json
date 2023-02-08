@@ -106,7 +106,7 @@
             "@type": "rr:PredicateObjectMap",
             "rr:objectMap": {
               "@type": "rr:ObjectMap",
-              "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']",
+              "rml:reference": "shareableSourceId",
               "rr:datatype": "http://www.w3.org/2001/XMLSchema#string"
             },
             "rr:predicate": "example:fileId"
@@ -390,7 +390,7 @@
             "@type": "rr:PredicateObjectMap",
             "rr:objectMap": {
               "@type": "rr:ObjectMap",
-              "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']"           
+              "rml:reference": "shareableSourceId"           
             },
             "rr:predicate": "example:file"
           },
@@ -604,7 +604,7 @@
                     "@type": "rr:PredicateObjectMap",
                     "rr:objectMap": {
                       "@type": "rr:ObjectMap",
-                      "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']"           
+                      "rml:reference": "shareableSourceId"           
                     },
                     "rr:predicate": "example:id"
                   }
@@ -849,7 +849,7 @@
             "@type": "rr:PredicateObjectMap",
             "rr:objectMap": {
               "@type": "rr:ObjectMap",
-              "rml:reference": "entity['https://standardknowledge.com/ontologies/core/sourceId']"
+              "rml:reference": "shareableSourceId"
             },
             "rr:predicate": "example:task_gid"
           },
@@ -973,8 +973,8 @@
       "@type": "https://standardknowledge.com/ontologies/core/Verb",
       "label": "share",
       "parametersContext": {
-        "entity": {
-          "@id": "https://example.com/entity",
+        "shareableSourceId": {
+          "@id": "https://example.com/shareableSourceId",
           "@type": "@id"
         },
         "account": {
@@ -997,8 +997,9 @@
           {
             "shacl:maxCount": 1,
             "shacl:minCount": 1,
-            "shacl:name": "entity",
-            "shacl:path": "https://example.com/entity"
+            "shacl:name": "shareableSourceId",
+            "shacl:path": "https://example.com/shareableSourceId",
+            "shacl:datatype": "xsd:string"
           },
           {
             "shacl:maxCount": 1,
