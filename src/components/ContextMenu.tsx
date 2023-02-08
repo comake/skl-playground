@@ -1,11 +1,11 @@
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import useOverhangAdjustment from '../hooks/useOverhangAdjustment';
-import { ClickLocation } from '../util/Types';
+import { ClickLocation, OrArray } from '../util/Types';
 import DropdownPortal from './DropdownPortal';
 
 export interface ContextMenuProps {
   location: ClickLocation;
-  children: ReactNode;
+  children: OrArray<ReactNode>;
   xOffset?: number;
   yOffset?: number;
 }

@@ -3,6 +3,7 @@ import { RDFS } from '@comake/skl-js-engine';
 import { useCallback, useContext, useMemo } from 'react';
 import SchemaContext from '../contexts/SchemaContext';
 import { ClickEvent } from '../util/Types';
+import CloseButton from './CloseButton';
 
 export interface SchemaTabProps {
   schema: string;
@@ -75,9 +76,7 @@ function SchemaTab({ schema, saved }: SchemaTabProps) {
             : 'Not Found'
           }  
         </div>
-        <button onClick={closeSchema} className='Close-Tab-Button Centered'>
-          <CloseIcon className='Close-Icon'/>
-        </button>
+        <CloseButton onClick={closeSchema} />
     </div>
   )
 }

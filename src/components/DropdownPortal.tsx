@@ -15,7 +15,7 @@ class DropdownPortal extends React.Component {
     this.props = props;
     this.el = document.createElement('div');
     this.el.classList.add('Dropdown-Portal');
-    this.el.style.zIndex = props.zIndex ? props.zIndex.toString() : '400';
+    this.el.style.zIndex = props.zIndex ? props.zIndex.toString() : '100';
   }
 
   componentDidMount() {

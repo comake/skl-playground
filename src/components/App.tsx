@@ -11,6 +11,7 @@ import { Entity } from '@comake/skl-js-engine';
 import { preloadedProjects, Project } from '../PreloadedProjects';
 import ProjectContext from '../contexts/ProjectContext';
 import { RDFS } from '../util/Vocabularies';
+import NewProjectModal from './NewProjectModal';
 
 function App() { 
   const [projects, setProjects] = useState<Record<string, Project>>(keyOnId(preloadedProjects));
@@ -23,6 +24,13 @@ function App() {
   const [openSchemas, setOpenSchemas] = useState<string[]>([]);
   const [result, setResult] = useState<string>();
   const [loadingResult, setLoadingResult] = useState(false);
+  const [creatingNewProject, setCreatingNewProject] = useState(false);
+  const createNewProject = useCallback(() => setCreatingNewProject(true), []);
+  const closeNewProjectModal = useCallback(() => setCreatingNewProject(false), []);
+
+  const insertProject = useCallback((project: Project) => {
+    setProjects((prevProjects) => ({ ...prevProjects, [project.id]: project }));
+  }, []);
 
   const addNewSchema = useCallback(() => {
     const uid = uuid();
@@ -71,8 +79,10 @@ function App() {
       selectedProject: projects[selectedProjectId],
       setSelectedProjectId,
       projects: Object.values(projects),
+      createNewProject,
+      insertProject
      }), 
-    [setSelectedProjectId, projects, selectedProjectId]
+    [setSelectedProjectId, projects, selectedProjectId, createNewProject, insertProject]
   );
 
   useEffect(() => {
@@ -133,6 +143,7 @@ function App() {
             <div className={`App ${theme}`}>
               <Header />
               <AppBody />
+              { creatingNewProject && <NewProjectModal close={closeNewProjectModal} />}
             </div>
           </ThemeContext.Provider>
         </ResultContext.Provider>

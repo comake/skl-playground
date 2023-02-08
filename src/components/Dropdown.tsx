@@ -1,12 +1,12 @@
 import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import useDocumentEvent from '../hooks/useDocumentEvent';
-import { ClickEvent } from '../util/Types';
+import { ClickEvent, OrArray } from '../util/Types';
 
 import DropdownPortal from './DropdownPortal';
 
 export interface DropdownProps {
   buttonContents: ReactNode;
-  children: ReactNode;
+  children: OrArray<ReactNode>;
   dontCloseOnDropdownClick?: boolean;
   dontCloseOnButtonClick?: boolean;
   additionalClasses?: string;

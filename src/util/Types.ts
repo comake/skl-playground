@@ -40,3 +40,5 @@ export type FixedLengthArray<T, L extends number, TObj = [T, ...Array<T>]> =
     [I: number ] : T
     [Symbol.iterator]: () => IterableIterator<T>   
   }
+
+export type OrArray<T> = T | T[];

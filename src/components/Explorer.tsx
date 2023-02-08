@@ -4,8 +4,7 @@ import SchemaContext from '../contexts/SchemaContext';
 import { OWL, SKL } from '../util/Vocabularies';
 import ProjectDropdown from './ProjectDropdown';
 import SchemaSection, { SchemaSectionProps } from './SchemaSection';
-
-import { ReactComponent as NewFileIcon } from '../images/plus.svg';
+import NewSchemaButton from './NewSchemaButton';
 
 const SECTIONS = {
   Nouns: 'Nouns',
@@ -31,7 +30,7 @@ const TYPE_TO_SECTION = {
 };
 
 function Explorer() {
-  const { schemas, coreSchemas, addNewSchema } = useContext(SchemaContext);
+  const { schemas, coreSchemas } = useContext(SchemaContext);
   const { selectedProject } = useContext(ProjectContext);
 
   const schemasBySection = useMemo(() => {
@@ -64,12 +63,7 @@ function Explorer() {
     <div className='Explorer'>
       <div className='Project-Header Centered'>
         <div className='Project-Name'>{selectedProject.name}</div>
-        <button 
-          onClick={addNewSchema}
-          className='Project-Header-Button' 
-          title='New Schema'>
-            <NewFileIcon />
-        </button>
+        <NewSchemaButton />
         <ProjectDropdown />
       </div>
       <div className='Tree-View'>

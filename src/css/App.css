@@ -64,6 +64,7 @@ button {
 
   --dropdown-background-color: rgb(53, 59, 69);
   --dropdown-border-color: rgb(54, 57, 65);
+  --dropdown-button-color: rgb(41, 43, 50);
 
   --cta-button-color: #ff88fd;
 
@@ -76,7 +77,7 @@ button {
   --primary-icon-color: rgb(108, 113, 118);
 
   --primary-text-color: #24292f;
-  --secondary-text-color: rgb(30, 30, 30);
+  --secondary-text-color: rgb(57, 59, 63);
   --tertiary-text-color: rgba(61, 67, 74, 0.5);
   --quaternary-text-color: rgba(87, 96, 106, 0.5);
 
@@ -95,7 +96,8 @@ button {
   --warning-text-color: #ff1818;
 
   --dropdown-background-color: rgb(255, 255, 255);
-  --header-dropdown-color: hsl(210, 18%, 84%);
+  --dropdown-border-color: hsl(215, 19%, 88%);
+  --dropdown-button-color: rgb(244, 244, 245);
 
   --cta-button-color: #ff88fd;
 
@@ -432,7 +434,7 @@ button {
   overflow: hidden;
 }
 
-.Schema-Tab .Close-Tab-Button, .Project-Header-Button {
+.Schema-Tab .Close-Button, .Project-Header-Button {
   height: 22px;
   width: 22px;
   border-radius: 4px;
@@ -445,15 +447,15 @@ button {
   color: var(--quaternary-text-color);
 }
 
-.Schema-Tab .Close-Tab-Button {
+.Schema-Tab .Close-Button {
   margin-left: 3px;
 }
 
-.Schema-Tab.unsaved .Close-Tab-Button:not(:hover) .Close-Icon {
+.Schema-Tab.unsaved .Close-Button:not(:hover) .Close-Icon {
   display: none;
 }
 
-.Schema-Tab.unsaved .Close-Tab-Button:not(:hover)::after {
+.Schema-Tab.unsaved .Close-Button:not(:hover)::after {
   content: '●';
   font-size: 17px;
 }
@@ -462,11 +464,11 @@ button {
   visibility: hidden;
 }
 
-.Schema-Tab .Close-Tab-Button:hover, .Project-Header-Button:hover { 
+.Schema-Tab .Close-Button:hover, .Project-Header-Button:hover { 
   background-color: var(--button-hover-color);
 }
 
-.Schema-Tab .Close-Tab-Button .Close-Icon {
+.Schema-Tab .Close-Button .Close-Icon {
   height: 10px;
   width: 10px;
   min-height: 10px;
@@ -484,11 +486,11 @@ button {
   border-bottom: 1px solid var(--main-background-color);
 }
 
-.Schema-Tab.selected .Close-Tab-Button {
+.Schema-Tab.selected .Close-Button {
   color: var(--primary-text-color);
 }
 
-.Schema-Tab.selected .Close-Tab-Button .Close-Icon {
+.Schema-Tab.selected .Close-Button .Close-Icon {
   fill: var(--secondary-text-color);
 }
 
@@ -557,7 +559,7 @@ select {
 .Operation-Section-Header {
   font-weight: 500;
   font-size: 13px;
-  color: var(--secondary-text-color);
+  color: var(--primary-text-color);
   margin: 15px 0 10px 0;
 }
 
@@ -610,7 +612,7 @@ select {
   background-color: var(--main-background-color);
 }
 
-.Run-Operation-Button {
+.CTA-Button {
   background-color: var(--cta-button-color);
   color: white;
   font-weight: 600;
@@ -621,12 +623,12 @@ select {
   outline: none;
 }
 
-.Run-Operation-Button:disabled {
+.CTA-Button:disabled {
   background-color: var(--secondary-icon-color);
   pointer-events: none;
 }
 
-.Operation-Error {
+.Error {
   font-size: 12px;
   padding: 3px 4px;
   border-radius: 4px;
@@ -684,10 +686,15 @@ select {
   box-shadow: 0 10px 20px -1px rgba(0, 0, 0, 0.4);
 }
 
+.Dropdown-Line {
+  margin: 10px 0;
+  height: 1px;
+  background-color: var(--dropdown-border-color);
+}
+
 .Project-Dropdown-Contents {
   width: 350px;
-  box-sizing: border-box;
-  padding: 0 10px 10px 10px;
+  padding-bottom: 10px;
 }
 
 .Project-Dropdown-Header {
@@ -696,6 +703,10 @@ select {
   padding: 0 10px;
   margin-top: 15px;
   margin-bottom: 10px;
+}
+
+.Project-Options-Container {
+  padding: 0 8px;
 }
 
 .Project-Button {
@@ -711,7 +722,7 @@ select {
   text-align: left;
 }
 
-.Project-Button:hover {
+.Dropdown-Option:hover, .Project-Button:hover {
   background-color: var(--button-hover-color);
 }
 
@@ -719,13 +730,26 @@ select {
   color: var(--primary-text-color);
   font-size: 13px;
   font-weight: 500;
-  margin-bottom: 5px;
 }
 
 .Project-Button .Project-Description {
   color: var(--tertiary-text-color);
   font-size: 13px;
   font-weight: 400;
+  margin-top: 5px;
+}
+
+.Dropdown-Option {
+  padding: 8px 18px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width:100%;
+  color: var(--secondary-text-color);
+  font-size: 13px;
+  text-align: left;
+  display: block;
+  text-decoration: none;
 }
 
 .Context-Menu-Dropdown {

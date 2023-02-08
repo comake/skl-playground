@@ -131,11 +131,11 @@ function OperationView() {
         ))}
       </div>
       <div className='Operation-Toolbar Centered'>
-        { operationError && <div className='Operation-Error'>{ operationError }</div>}
+        { operationError && <div className='Operation-Error Error'>{ operationError }</div>}
         <div className='Flex-Spacer'></div>
         { selectedVerb && (
           <button 
-            className='Run-Operation-Button' 
+            className='CTA-Button Run-Operation-Button' 
             disabled={loadingResult} 
             onClick={runOperation}>
               Run

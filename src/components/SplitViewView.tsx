@@ -1,9 +1,10 @@
-import { DragEvent, useCallback, useMemo, useRef, useState } from 'react';
+import { OrArray } from '@comake/skl-js-engine';
+import { DragEvent, ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 const DRAG_HOVER_TIMEOUT_DURATION = 380;
 
 export interface SplitViewViewProps {
-  children: React.ReactNode;
+  children: OrArray<ReactNode>;
   dimensionsComputed: boolean;
   dimension?: number;
   offset?: number;

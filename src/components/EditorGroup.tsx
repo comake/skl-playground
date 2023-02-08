@@ -36,15 +36,17 @@ function EditorGroup() {
         alert('This schema cannot be saved due to syntax error.')
       }
     }
-  }, [schemas, selectedSchema, setSchemas, unsavedSchemas])
+  }, [schemas, selectedSchema, setSchemas, unsavedSchemas]);
 
-  useDocumentEvent('keydown', true, (event: KeyboardEvent) => {
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
     if (event.metaKey && event.key === 's') {
       event.stopPropagation();
       event.preventDefault();
       saveSchema();
     }
-  }, true);
+  }, [saveSchema]);
+
+  useDocumentEvent('keydown', true, onKeyDown, true);
 
   const displayedOpenSchemas = useMemo(() => {
     if (selectedSchema && !openSchemas.includes(selectedSchema)) {
