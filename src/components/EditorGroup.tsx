@@ -39,7 +39,7 @@ function EditorGroup() {
   }, [schemas, selectedSchema, setSchemas, unsavedSchemas]);
 
   const onKeyDown = useCallback((event: KeyboardEvent) => {
-    if (event.metaKey && event.key === 's') {
+    if (event.metaKey && event.code === 'KeyS') {
       event.stopPropagation();
       event.preventDefault();
       saveSchema();

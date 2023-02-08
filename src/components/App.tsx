@@ -12,6 +12,7 @@ import { preloadedProjects, Project } from '../PreloadedProjects';
 import ProjectContext from '../contexts/ProjectContext';
 import { RDFS } from '../util/Vocabularies';
 import NewProjectModal from './NewProjectModal';
+import useDocumentEvent from '../hooks/useDocumentEvent';
 
 function App() { 
   const [projects, setProjects] = useState<Record<string, Project>>(keyOnId(preloadedProjects));
@@ -84,6 +85,16 @@ function App() {
      }), 
     [setSelectedProjectId, projects, selectedProjectId, createNewProject, insertProject]
   );
+
+  const onKeyDown = useCallback((event: KeyboardEvent) => {
+    if (event.altKey && event.code === 'KeyN') {
+      event.stopPropagation();
+      event.preventDefault();
+      addNewSchema();
+    }
+  }, [addNewSchema]);
+
+  useDocumentEvent('keydown', true, onKeyDown, true);
 
   useEffect(() => {
     async function loadAndSetCoreSchemas() {
