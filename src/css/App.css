@@ -114,6 +114,7 @@ button {
   width: 26px;
   border-radius: 50%;
   justify-content: center;
+  margin-left: 15px;
 }
 
 .Theme-Toggle:hover {
@@ -143,7 +144,18 @@ button {
 .Header-Logo {
   height: 24px;
   width: 24px;
-  margin-right: 10px;
+}
+
+.Header-Link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.Header-Link:hover {
+  color: var(--primary-text-color);
 }
 
 .Body {

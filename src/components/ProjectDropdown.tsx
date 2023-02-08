@@ -31,6 +31,15 @@ function ProjectDropdown() {
         <button className='Dropdown-Option' onClick={createNewProject}>
           Create a new Project
         </button>
+        <div className='Dropdown-Line'></div>
+        <a 
+          className='Dropdown-Option'
+          target='_blank' 
+          href='https://docs.standardknowledge.com' 
+          rel='noreferrer'
+        >
+          View the documentation
+        </a>
         <a 
           className='Dropdown-Option' 
           target='_blank' 
@@ -39,13 +48,21 @@ function ProjectDropdown() {
         >
           Contribute Schemas to the SKL Dictionary
         </a>
+        <a
+          className='Dropdown-Option'
+          href={'https://github.com/comake/skl-playground'}
+          target='_blank'
+          rel='noreferrer'
+        >
+          Contribute to the playground
+        </a>
         <a 
           className='Dropdown-Option'
           target='_blank' 
-          href='https://docs.standardknowledge.com' 
+          href='https://discord.gg/stvfSB8kpG?ref=https://play.standardknowledge.com' 
           rel='noreferrer'
         >
-          View the documentation
+          Chat with us on Discord
         </a>
       </div>
     </Dropdown>
