@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'react';
+import { useContext } from 'react';
 import ProjectContext from '../contexts/ProjectContext';
 import Dropdown from './Dropdown';
 import { ReactComponent as EllipsisIcon } from '../images/ellipsis.svg';

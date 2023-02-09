@@ -1,4 +1,3 @@
-import { ReactComponent as CloseIcon } from '../images/close.svg';
 import { RDFS } from '@comake/skl-js-engine';
 import { useCallback, useContext, useMemo } from 'react';
 import SchemaContext from '../contexts/SchemaContext';
